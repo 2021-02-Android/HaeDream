@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 로그인 화면
-    view 아이디
+<!-- 로그인 화면 _ view 아이디
     사용자 입력 : user_id, user_pw
     로그인 버튼 : login
-    아이디 찾기 : find_id, 비번 찾기 : find_pw, 회원가입 : join
+    아이디 찾기 : find_id, 비번 찾기 : find_pw, 회원가입 : join_go
 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -80,12 +79,13 @@
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="TouchTargetSizeCheck,TextContrastCheck,SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/join"
+    <Button
+        android:id="@+id/go_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="44dp"
+        android:background="@drawable/input_white"
         android:fontFamily="@font/font_medium"
         android:text="@string/join"
         android:textColor="#000000"
