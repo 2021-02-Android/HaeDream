@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="93dp"
+        android:layout_height="81dp"
+        android:src="@drawable/move1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/font_bold"
+            android:text="변민정"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/font_medium"
+            android:text="이삿짐 | 부산진구 엄광로"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/substring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/font_medium"
+            android:text="심부름 내용 :"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/font_medium"
+            android:text="적립 포인트 :"
+            android:textColor="@color/black"
+            android:textSize="10dp" />
+    </LinearLayout>
+</LinearLayout>
