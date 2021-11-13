@@ -23,5 +23,15 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // 로그인 버튼 누를 시 메인 화면으로 이동
+        Button loginButton = (Button) findViewById(R.id.login);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainSCR.class);
+                startActivity(intent);
+            }
+        });
     }
 }

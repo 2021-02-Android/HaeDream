@@ -40,6 +40,7 @@
         </activity>
 
         <activity android:name=".Login" />
+        <activity android:name=".MainSCR" />
     </application>
 
 </manifest>
