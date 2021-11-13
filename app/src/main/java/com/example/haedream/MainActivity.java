@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_main); // 로딩 화면 출력
 
         // 4초 뒤 Login 화면 출력함
         Handler handler = new Handler();
@@ -23,6 +23,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        }, 4000);
+        }, 4000); // 4초 대기
     }
 }

@@ -25,17 +25,23 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        // 로그인 버튼 누를 시 메인 화면으로 이동
+        // 사용자가 입력한 값 받아옴.
         Button loginButton = (Button) findViewById(R.id.login);
         EditText user_id = findViewById(R.id.user_id);
         EditText user_pw = findViewById(R.id.user_pw);
+
+        // 로그인 버튼 누를 시 LoginActivity.java에 값 전달. 로그인 성공시 메인 화면으로 이동
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 사용자가 EditText(아이디, 비밀번호)에 입력한 값을 LoginActivity.java로 전달
+                // 전달할 때 일반적인 방법X 안드로이드에서는 무조건 인텐트를 사용해서 값을 넘긴다. 값 여러 개 한 번에 가능.
+                // 값 넣어서 전달할 때는 xxxExtra 사용함 (보내기 put, 받기 get)
+                // LoginActivity.java에서는 인텐트에 담긴 user_id, user_pw 값 받아서 로그인여부 확인
                 Intent loginintent = new Intent(getApplicationContext(), LoginActivity.class);
-                loginintent.putExtra("user_id", user_id.getText().toString());
+                loginintent.putExtra("user_id", user_id.getText().toString()); //값 넘길 때 String으로 변환하여 넘겨주자
                 loginintent.putExtra("user_pw", user_pw.getText().toString());
-                startActivity(loginintent);
+                startActivity(loginintent); // 필수. 안넣으면 인텐트 안보내짐!
             }
         });
     }
