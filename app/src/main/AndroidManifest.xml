@@ -44,6 +44,7 @@
         </activity>
 
         <activity android:name=".Login" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".MainSCR" />
     </application>
 
