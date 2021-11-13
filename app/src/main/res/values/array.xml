@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="my_array">
+        <item> 포인트를 정해주세요. </item>
+        <item> 100포인트 </item>
+        <item> 200포인트 </item>
+        <item> 300포인트 </item>
+        <item> 400포인트 </item>
+        <item> 500포인트 </item>
+    </string-array>
+
+    <string-array name="time_array">
+        <item> 시간을 선택해주세요. </item>
+        <item> 30분 이내 </item>
+        <item> 1시간 이내 </item>
+        <item> 1시간 반 이내 </item>
+        <item> 2시간 이내 </item>
+        <item> 3시간 이내 </item>
+    </string-array>
+
+    <string-array name="drive_array">
+        <item> 세부 항목을 선택해주세요. </item>
+        <item> 배달 - 식,음료</item>
+        <item> 이사 - 짐 나르기, 이동 </item>
+        <item> 청소 - 화장실,방,거실 </item>
+        <item> 집안일 - 설거지, 전등교체 </item>
+        <item> 벌레잡기 </item>
+        <item> 기타 </item>
+    </string-array>
+
+    <string-array name="departArray">
+            <item>소속 학과를 선택해주세요.</item>
+            <item>컴퓨터소프트웨어</item>
+    </string-array>
+
+</resources>
