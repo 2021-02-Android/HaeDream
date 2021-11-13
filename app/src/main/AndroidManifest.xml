@@ -37,8 +37,9 @@
                 <action android:name="android.intent.action.Main" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
+        <activity android:name=".Login" />
     </application>
 
 </manifest>
