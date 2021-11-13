@@ -101,6 +101,7 @@
         android:layout_marginTop="11dp"
         android:layout_marginEnd="55dp"
         android:background="@drawable/login_button"
+        android:onClick="LoginActivity"
         android:text="@string/Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.529"
