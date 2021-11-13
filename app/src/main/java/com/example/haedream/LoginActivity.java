@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent loginIntent = getIntent();
         user_id = loginIntent.getStringExtra("user_id");
         user_pw = loginIntent.getStringExtra("user_pw");
-        Log.d("[TAG] 로그인 디버깅", "인텐트 받아옴: " + user_id + user_pw);
+        Log.d("[TAG] 로그인 디버깅", "인텐트 받아옴: " + user_id + " " + user_pw + "/");
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
