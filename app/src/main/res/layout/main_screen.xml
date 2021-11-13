@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 메인화면 _ 아이디
+        설정 버튼 : setting, 마이페이지 : mypage
+        심부름 : simbu_button, 기부 : dona_button
+        거래 : trans_button, 소개 : intro_button
+    -->
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="394dp"
+        android:layout_height="58dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/top_bar" />
+
+    <ImageView
+        android:id="@+id/simbu_button"
+        android:layout_width="306dp"
+        android:layout_height="112dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="148dp"
+        android:layout_marginEnd="43dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/errand_button" />
+
+    <ImageView
+        android:id="@+id/dona_button"
+        android:layout_width="141dp"
+        android:layout_height="108dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/simbu_button"
+        app:srcCompat="@drawable/donation_button" />
+
+    <ImageView
+        android:id="@+id/trans_button"
+        android:layout_width="141dp"
+        android:layout_height="108dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/intro_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/dona_button"
+        app:layout_constraintTop_toBottomOf="@+id/simbu_button"
+        app:srcCompat="@drawable/transaction_button" />
+
+    <ImageView
+        android:id="@+id/intro_button"
+        android:layout_width="306dp"
+        android:layout_height="112dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="215dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dona_button"
+        app:srcCompat="@drawable/introduction_button" />
+
+    <ImageButton
+        android:id="@+id/mypage"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="333dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="2dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/my" />
+
+    <ImageButton
+        android:id="@+id/setting"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="2dp"
+        android:backgroundTint="#00FFFDFD"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/mypage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
