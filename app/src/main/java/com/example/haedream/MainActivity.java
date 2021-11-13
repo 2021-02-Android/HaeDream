@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -14,23 +14,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        // 로그인창에서 회원가입 버튼 누를 시 이동
-        Button imageButton = findViewById(R.id.go_join);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        // 4초 뒤 Login 화면 출력함
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Join.class);
-                startActivity(intent);
+            public void run() {
+                Intent i = new Intent(MainActivity.this, Login.class);
+                startActivity(i);
+                finish();
             }
-        });
-
-        Button btn_login = findViewById(R.id.login);
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(getApplicationContext(),"로그인 버튼 클릭",Toast.LENGTH_SHORT).show();
-                LoginActivity loginActivity = new LoginActivity();
-            }
-        });
+        }, 4000);
     }
 }

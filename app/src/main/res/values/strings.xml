@@ -8,4 +8,5 @@
     <string name="input_id">아이디 입력</string>
     <string name="join">회원가입</string>
     <string name="phone"><u>010</u></string>
+    <string name="Loding">잠시 후 앱이 실행 됩니다.</string>
 </resources>
