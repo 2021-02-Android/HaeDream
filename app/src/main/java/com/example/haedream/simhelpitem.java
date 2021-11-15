@@ -10,7 +10,7 @@ public class simhelpitem {
     String point; //포인트
 
     //생성
-    public  simhelpitem(String name, String sub, String substring, String point,int resid){
+    public simhelpitem(String name, String sub, String substring, String point,int resid) {
         this.name = name;
         this.sub = sub;
         this.substring = substring;
@@ -51,7 +51,7 @@ public class simhelpitem {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "simhelpitem{" +
                 "name='" + name + '\'' +
                 ", sub='" + sub + '\'' +

@@ -47,9 +47,7 @@ public class SimhelpItemView extends LinearLayout {
     public void setSubstring(String substring){
         textView3.setText(substring);
     }
-    public void setPoint(String point){
-        textView4.setText(point);
-    }
+    public void setPoint(String point){ textView4.setText(point); }
     public void setImage(int resid){
         imageView.setImageResource(resid);
     }
