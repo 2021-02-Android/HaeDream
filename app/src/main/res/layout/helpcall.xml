@@ -10,7 +10,7 @@
 
     <ImageView
         android:id="@+id/highbar"
-        android:layout_width="394dp"
+        android:layout_width="match_parent"
         android:layout_height="58dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
@@ -143,6 +143,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.172"
         app:srcCompat="@drawable/bae1" />
+
+
 
     <TextView
         android:id="@+id/textView"

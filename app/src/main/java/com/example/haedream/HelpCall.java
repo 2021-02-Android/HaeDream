@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,8 @@ public class HelpCall extends AppCompatActivity {
     Spinner spinner1;
     Spinner spinner2;
     Spinner spinner3;
+    int count = 1;
+    String str = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,6 +74,101 @@ public class HelpCall extends AppCompatActivity {
             }
         });
 
+        ImageButton baebtn = findViewById(R.id.driving);
+        baebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count++;
+                if (count%2==0) { // 배달 선택
+                    str = "bae";
+                    baebtn.setImageResource(R.drawable.bae2);
+                }
+                else { // 배달 선택 안 함
+                    baebtn.setImageResource(R.drawable.bae1);
+                    str = null;
+                }
+            }
+        });
+
+        ImageButton movebtn = findViewById(R.id.move);
+        movebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count++;
+                if (count%2==0) {
+                    str = "move";
+                    movebtn.setImageResource(R.drawable.move2);
+                }
+                else {
+                    movebtn.setImageResource(R.drawable.move1);
+                    str = null;
+                }
+            }
+        });
+
+        ImageButton cleanbtn = findViewById(R.id.clean);
+        cleanbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count++;
+                if (count%2==0) {
+                    str = "clean";
+                    cleanbtn.setImageResource(R.drawable.clean2);
+                }
+                else {
+                    cleanbtn.setImageResource(R.drawable.clean1);
+                    str = null;
+                }
+            }
+        });
+
+        ImageButton homebtn = findViewById(R.id.homework);
+        homebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count++;
+                if (count%2==0) {
+                    str = "home";
+                    homebtn.setImageResource(R.drawable.home2);
+                }
+                else {
+                    homebtn.setImageResource(R.drawable.home1);
+                    str = null;
+                }
+            }
+        });
+
+        ImageButton insectbtn = findViewById(R.id.insect);
+        insectbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count++;
+                if (count%2==0) {
+                    str = "insect";
+                    insectbtn.setImageResource(R.drawable.insect2);
+                }
+                else {
+                    insectbtn.setImageResource(R.drawable.insect1);
+                    str = null;
+                }
+            }
+        });
+
+        ImageButton anybtn = findViewById(R.id.anything);
+        anybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count++;
+                if (count%2==0) {
+                    str = "anything";
+                    anybtn.setImageResource(R.drawable.anything2);
+                }
+                else {
+                    anybtn.setImageResource(R.drawable.anything1);
+                    str = null;
+                }
+            }
+        });
 
         // 사용자가 입력한 값 받아옴.
         ImageButton helpButton = (ImageButton) findViewById(R.id.helpBut);
@@ -82,6 +180,7 @@ public class HelpCall extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent callintent = new Intent(getApplicationContext(), HelpCallActivity.class);
+                callintent.putExtra("category", str);
                 callintent.putExtra("details", spinner1.getSelectedItem().toString()); //값 넘길 때 String으로 변환하여 넘겨주자
                 callintent.putExtra("info", info.getText().toString());
                 callintent.putExtra("location", location.getText().toString());
@@ -90,6 +189,5 @@ public class HelpCall extends AppCompatActivity {
                 startActivity(callintent);
             }
         });
-
     }
 }

@@ -13,10 +13,11 @@ public class HelpCallRequest extends StringRequest {
     private Map<String, String> map;
 
 
-    public HelpCallRequest(String details, String info, String location, String point, String period, Response.Listener<String> listener) {
+    public HelpCallRequest(String category, String details, String info, String location, String point, String period, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
+        map.put("category", category);
         map.put("details", details);
         map.put("info", info);
         map.put("location", location);
