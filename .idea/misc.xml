@@ -3,12 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.38229166666666664" />
-        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/drawable/ic_launcher_background.xml" value="0.38229166666666664" />
-        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/drawable/input_white.xml" value="0.38229166666666664" />
-        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/drawable/login_button.xml" value="0.38229166666666664" />
-        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
-        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/login.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/HaeDream/app/src/main/res/drawable/input.xml" value="0.39895833333333336" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/HaeDream/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/HaeDream/app/src/main/res/layout/helpcall.xml" value="0.33" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/HaeDream/app/src/main/res/layout/login.xml" value="0.33" />
       </map>
     </option>
   </component>
