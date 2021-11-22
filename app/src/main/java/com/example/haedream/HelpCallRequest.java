@@ -9,7 +9,7 @@ import java.util.Map;
 public class HelpCallRequest extends StringRequest {
     // 서버 URL 설정 ( PHP 파일 연동 - Database 바로 접근 불가, php 중간 매체로 파싱하여 사용 )
     // php 파일 변경 시 수정 해야 함
-    final static private String URL = "http://idox23.cafe24.com/task_test.php";
+    final static private String URL = "http://idox23.cafe24.com/task_insert.php";
     private Map<String, String> map;
 
 

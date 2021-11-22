@@ -66,39 +66,50 @@
 
     </LinearLayout>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/simbu_button"
         android:layout_width="wrap_content"
-        android:layout_height="112dp"
+        android:layout_height="120dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="fitCenter"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="40dp"
         app:srcCompat="@drawable/errand_button" />
+
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="112dp"
         android:orientation="horizontal">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/dona_button"
             android:layout_width="141dp"
-            android:layout_marginStart="36dp"
+            android:scaleType="centerCrop"
+            android:backgroundTint="#00FFFFFF"
+            android:layout_marginStart="45dp"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/donation_button" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/trans_button"
             android:layout_width="141dp"
-            android:layout_marginLeft="40dp"
+            android:scaleType="centerCrop"
+            android:backgroundTint="#00FFFFFF"
+            android:layout_marginLeft="25dp"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/transaction_button" />
 
     </LinearLayout>
 
 
-    <ImageView
+    <ImageButton
         android:id="@+id/intro_button"
         android:layout_width="wrap_content"
-        android:layout_height="112dp"
-        android:layout_marginTop="10dp"
+        android:scaleType="fitCenter"
+        android:backgroundTint="#00FFFFFF"
+        android:layout_height="120dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="40dp"
         app:srcCompat="@drawable/introduction_button" />
 
 </LinearLayout>
