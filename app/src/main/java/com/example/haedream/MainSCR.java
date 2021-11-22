@@ -17,8 +17,8 @@ public class MainSCR extends AppCompatActivity {
         setContentView(R.layout.main_screen);
 
 /*
-        *** 각 함수에 Intent intent = new Intent(getApplicationContext(), javaname.class); 여기에서
-        *** 'javaname'에 설정, 마이페이지, 심부름, 기부, 거래, 소개 java class 이름 그대로 갖다 붙이면 됨 !!
+     //   *** 각 함수에 Intent intent = new Intent(getApplicationContext(), javaname.class); 여기에서
+     //   *** 'javaname'에 설정, 마이페이지, 심부름, 기부, 거래, 소개 java class 이름 그대로 갖다 붙이면 됨 !!
 
         // 설정 버튼 누를 시 설정 화면 이동
         ImageButton setButton = (ImageButton) findViewById(R.id.setting);
@@ -39,18 +39,18 @@ public class MainSCR extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+*/
         // 심부름 버튼 누를 시 심부름 화면 이동
         ImageButton simButton = (ImageButton) findViewById(R.id.simbu_button);
         simButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), javaname.class);
+                Intent intent = new Intent(getApplicationContext(), SimhelpList.class);
                 startActivity(intent);
             }
         });
 
-        // 기부 버튼 누를 시 기부 화면 이동
+    /*    // 기부 버튼 누를 시 기부 화면 이동
         ImageButton donaButton = (ImageButton) findViewById(R.id.dona_button);
         donaButton.setOnClickListener(new View.OnClickListener() {
             @Override

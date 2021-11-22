@@ -27,11 +27,10 @@
         <activity
             android:name=".HelpCall"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.Main" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
+            <intent-filter>
+                <action android:name="android.intent.action.Main" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -45,7 +44,16 @@
 
         <activity android:name=".Login" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainSCR" />
+        <activity
+            android:name=".MainSCR"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.Main" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".HelpCallActivity" />
+
     </application>
 
 </manifest>

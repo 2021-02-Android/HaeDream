@@ -10,7 +10,7 @@
 
     <ImageView
         android:id="@+id/highbar"
-        android:layout_width="394dp"
+        android:layout_width="match_parent"
         android:layout_height="58dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
@@ -144,6 +144,8 @@
         app:layout_constraintVertical_bias="0.172"
         app:srcCompat="@drawable/bae1" />
 
+
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -222,7 +224,7 @@
         app:layout_constraintVertical_bias="0.836" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/info"
         android:layout_width="246dp"
         android:layout_height="30dp"
         android:layout_marginTop="32dp"
@@ -235,7 +237,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.891"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner1"
+        app:layout_constraintTop_toBottomOf="@+id/spin_details"
         tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <TextView
@@ -269,7 +271,7 @@
         app:layout_constraintVertical_bias="0.502" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/location"
         android:layout_width="246dp"
         android:layout_height="30dp"
         android:layout_marginTop="28dp"
@@ -280,13 +282,13 @@
         android:importantForAutofill="no"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/info"
         tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spin_point"
         android:layout_width="246dp"
         android:layout_height="30dp"
         android:layout_marginTop="1dp"
@@ -301,7 +303,7 @@
         app:layout_constraintVertical_bias="0.484"></Spinner>
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/spin_period"
         android:layout_width="246dp"
         android:layout_height="30dp"
         android:layout_marginTop="1dp"
@@ -421,7 +423,7 @@
         app:srcCompat="@drawable/help1" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/spin_details"
         android:layout_width="246dp"
         android:layout_height="30dp"
         android:layout_marginTop="1dp"
