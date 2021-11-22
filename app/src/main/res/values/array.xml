@@ -11,7 +11,7 @@
 
     <string-array name="time_array">
         <item> 시간을 선택해주세요. </item>
-        <item> 30분 이내 </item>
+        <item> 30분 이내 </item>len_contour
         <item> 1시간 이내 </item>
         <item> 1시간 반 이내 </item>
         <item> 2시간 이내 </item>
