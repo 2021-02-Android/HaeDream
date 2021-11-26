@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <!-- 채팅 리스트 창 _ 아이디
+        뒤로가기 : back_btn     설정 : setting    마이페이지 : mypage
+        심부름 버튼 : go_sim     기부버튼 : go_give
+        거래버튼 : go_garae     소개버튼 : go_intro
+        리스트 뷰 : chat_listview
+
+    -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#CCE5FF">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/transparent_logo" />
+
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/setting"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="#00FFFDFD"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/mypage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sal" />
+
+        <ImageButton
+            android:id="@+id/mypage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/my" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/chat_view">
+
+        <ListView
+            android:id="@+id/chat_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="15dp"
+            android:background="#00FF0000"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/back"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:orientation="horizontal"
+        android:background="#B5B5B5">
+
+
+        <ImageButton
+            android:id="@+id/go_sim"
+            android:layout_width="73dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="16dp"
+            app:srcCompat="@drawable/sim"
+            android:padding="8dp"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"/>
+
+        <ImageButton
+            android:id="@+id/go_give"
+            android:layout_width="73dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="24dp"
+            app:srcCompat="@drawable/givebut"
+            android:padding="8dp"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"/>
+
+        <ImageButton
+            android:id="@+id/go_garae"
+            android:layout_width="73dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="24dp"
+            android:padding="8dp"
+            app:srcCompat="@drawable/garaebut"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"/>
+
+        <ImageButton
+            android:id="@+id/go_intro"
+            android:layout_width="73dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="24dp"
+            android:padding="8dp"
+            app:srcCompat="@drawable/intro"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"/>
+
+    </LinearLayout>
+
+</LinearLayout>
