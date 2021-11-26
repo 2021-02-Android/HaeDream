@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:background="#CCE5FF">
+        android:background="#CCE5FF"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/imageView4"
