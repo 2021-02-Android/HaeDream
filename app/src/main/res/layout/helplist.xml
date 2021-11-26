@@ -8,46 +8,52 @@
     android:backgroundTint="@color/material_on_background_disabled"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/highbar"
-        android:layout_width="394dp"
-        android:layout_height="58dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/top_bar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#CCE5FF">
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/transparent_logo" />
 
-        android:layout_marginLeft="260dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="#00BFDEF6"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myBut"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/sal"
-        tools:ignore="SpeakableTextPresentCheck" />
+        <LinearLayout
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+        </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/myBut"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="4dp"
-        android:backgroundTint="#00BFDEF6"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/highbar"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/my"
-        tools:ignore="SpeakableTextPresentCheck" />
+        <ImageButton
+            android:id="@+id/setting"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="#00FFFDFD"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/mypage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sal" />
+
+        <ImageButton
+            android:id="@+id/mypage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/my" />
+
+    </LinearLayout>
 
     <View
         android:id="@+id/view"
@@ -59,7 +65,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078"
+        app:layout_constraintVertical_bias="0.067"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -71,9 +77,9 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092"
+        app:layout_constraintVertical_bias="0.083"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="231dp" />
+        tools:layout_editor_absoluteX="235dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,7 +115,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -127,7 +134,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -144,7 +152,8 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="5dp"
         android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -162,7 +171,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
+        android:padding="8.5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -194,13 +204,14 @@
         android:id="@+id/checkBox"
         android:layout_width="99dp"
         android:layout_height="31dp"
+        android:layout_marginStart="4dp"
         android:layout_marginRight="4dp"
         android:text="포인트 순"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/sorttext"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091"
+        app:layout_constraintVertical_bias="0.075"
         tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
 
 
