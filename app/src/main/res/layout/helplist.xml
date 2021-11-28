@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00FFFFFF"
     android:backgroundTint="@color/material_on_background_disabled"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,163 +57,114 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="394dp"
-        android:layout_height="42dp"
-        android:background="@color/blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.067"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/sorttext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/font_bold"
-        android:text="정렬 기준"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.083"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="235dp" />
-
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:background="@color/blue">
+
+        <LinearLayout
+            android:layout_width="230dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/sorttext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_bold"
+            android:paddingBottom="0dp"
+            android:text="정렬 기준"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginRight="8dp"
+            android:fontFamily="@font/font_medium"
+            android:text="포인트 순" />
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/view">
 
         <ListView
             android:id="@+id/listview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="849dp"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+        <ImageButton
+            android:id="@+id/callbutton"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="230dp"
+            android:background="#00FF0000"
+            android:layout_alignParentBottom="true"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/helpbut" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:orientation="horizontal"
+        android:background="#B5B5B5">
+
+
+        <ImageButton
+            android:id="@+id/go_sim"
+            android:layout_width="73dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="16dp"
+            app:srcCompat="@drawable/simbut"
+            android:padding="8dp"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"/>
+
+        <ImageButton
+            android:id="@+id/go_give"
+            android:layout_width="73dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="24dp"
+            app:srcCompat="@drawable/givebut"
+            android:padding="8dp"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"/>
+
+        <ImageButton
+            android:id="@+id/go_garae"
+            android:layout_width="73dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="24dp"
+            android:padding="8dp"
+            app:srcCompat="@drawable/garaebut"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"/>
+
+        <ImageButton
+            android:id="@+id/go_intro"
+            android:layout_width="73dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="24dp"
+            android:padding="8dp"
+            app:srcCompat="@drawable/meetbut"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"/>
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/downbar" />
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="73dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerCrop"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/simbut"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="73dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerCrop"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/givebut"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="73dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerCrop"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998"
-        app:srcCompat="@drawable/garaebut"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/imageButton6"
-        android:layout_width="73dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="centerCrop"
-        android:padding="8.5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton5"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/meetbut"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/callbutton"
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="30dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/helpbut"
-        tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="99dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginRight="4dp"
-        android:text="포인트 순"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/sorttext"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.075"
-        tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

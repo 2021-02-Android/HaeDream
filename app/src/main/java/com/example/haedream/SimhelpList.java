@@ -97,6 +97,7 @@ public class SimhelpList extends AppCompatActivity {
             }
             SimhelpItemAdapter helpListViewAdapter = new SimhelpItemAdapter(SimhelpList.this, arrayList);
             listView.setAdapter(helpListViewAdapter);
+
         }
     }
 }

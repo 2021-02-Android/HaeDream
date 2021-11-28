@@ -51,7 +51,6 @@ public class SimhelpItemAdapter extends BaseAdapter {
         ImageView category;
 
         category = convertView.findViewById(R.id.category_list);
-        category = convertView.findViewById(R.id.image);
         sub = convertView.findViewById(R.id.sub);
         substring = convertView.findViewById(R.id.substring);
         point = convertView.findViewById(R.id.point);
