@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <!-- 설정 xml _ 아이디
+        마이페이지 : mypage
+        프로필 변경 : change_profile     비번 변경 : change_pw
+        로그아웃 : logout                회원 탈퇴 : withdrawal
+    -->
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#CCE5FF"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="92dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/transparent_logo" />
+
+        <LinearLayout
+            android:layout_width="270dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"/>
+
+
+        <ImageButton
+            android:id="@+id/mypage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/my" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <Button
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/change_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn"
+        android:fontFamily="@font/font_medium"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:text="프로필 변경" />
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/change_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn"
+        android:fontFamily="@font/font_medium"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:text="비밀번호 변경" />
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn"
+        android:fontFamily="@font/font_medium"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:text="로그아웃" />
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/withdrawal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn"
+        android:fontFamily="@font/font_medium"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:text="회원 탈퇴" />
+
+
+</LinearLayout>
