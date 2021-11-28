@@ -53,7 +53,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".HelpCallActivity" />
-
+        <activity android:name=".Setting" />
+        <activity android:name=".MyPage" />
     </application>
 
 </manifest>

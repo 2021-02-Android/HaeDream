@@ -15,6 +15,16 @@ public class Setting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
 
+        // 뒤로가기 버튼
+        ImageButton back = (ImageButton) findViewById(R.id.back_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),MainSCR.class);
+                startActivity(intent);
+            }
+        });
+
         // mypage 버튼
         ImageButton my = (ImageButton) findViewById(R.id.mypage);
         my.setOnClickListener(new View.OnClickListener() {
