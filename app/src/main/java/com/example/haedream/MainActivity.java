@@ -23,6 +23,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        }, 4000); // 4초 대기
+        }, 3000); // 4초 대기
     }
 }

@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="40dp"
         android:fontFamily="@font/font_bold"
         android:text="JOIN"
         android:textColor="@color/black"
