@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -39,6 +40,16 @@ public class SimhelpList extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), HelpCall.class);
                 startActivity(intent);
+            }
+        });
+
+        // 리스트뷰에서 아이템 클릭 시 mycall.xml 화면 출력
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
+                Intent it = new Intent(getApplicationContext(), SimAccept.class);
+                it.putExtra("arrayList intent", "test");
+                startActivity(it);
             }
         });
     }
@@ -97,7 +108,7 @@ public class SimhelpList extends AppCompatActivity {
             }
             SimhelpItemAdapter helpListViewAdapter = new SimhelpItemAdapter(SimhelpList.this, arrayList);
             listView.setAdapter(helpListViewAdapter);
-
         }
     }
+
 }

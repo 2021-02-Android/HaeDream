@@ -29,8 +29,8 @@
     </string-array>
 
     <string-array name="departArray">
-            <item>소속 학과를 선택해주세요.</item>
-            <item>컴퓨터소프트웨어</item>
+        <item>소속 학과를 선택해주세요.</item>
+        <item>컴퓨터소프트웨어</item>
     </string-array>
 
 </resources>

@@ -73,10 +73,12 @@ public class SimhelpItemAdapter extends BaseAdapter {
         if(arrayList.get(position).getCategory().equals("anything")){
             category.setImageResource(R.drawable.anything1);
         }
-        sub.setText(arrayList.get(position).getDetails() + "/" + arrayList.get(position).getLocation());
+        sub.setText(arrayList.get(position).getDetails() + " | " + arrayList.get(position).getLocation());
         substring.setText("심부름 내용 : " + arrayList.get(position).getInfo());
         point.setText("포인트 : " + arrayList.get(position).getPoint());
 
         return convertView;
     }
+
+
 }
