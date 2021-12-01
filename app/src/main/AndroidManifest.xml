@@ -23,6 +23,7 @@
         </activity>
 
         <activity android:name=".Join"/>
+        <activity android:name=".JoinActivity"/>
 
         <activity
             android:name=".HelpCall"
