@@ -27,7 +27,7 @@ public class ChangePW extends AppCompatActivity {
         });
 
         // 뒤로가기 버튼
-        ImageButton back = (ImageButton) findViewById(R.id.back_btn);
+        ImageButton back = (ImageButton) findViewById(R.id.list_btn);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

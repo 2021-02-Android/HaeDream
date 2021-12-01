@@ -57,7 +57,7 @@
             android:src="@mipmap/ic_launcher" />
 
         <ImageButton
-            android:id="@+id/back_btn"
+            android:id="@+id/list_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentRight="true"

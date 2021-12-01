@@ -73,7 +73,7 @@
         </ListView>
 
         <ImageButton
-            android:id="@+id/back_btn"
+            android:id="@+id/list_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"

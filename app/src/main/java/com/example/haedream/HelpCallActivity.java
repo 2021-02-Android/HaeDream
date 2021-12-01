@@ -43,15 +43,6 @@ public class HelpCallActivity extends AppCompatActivity {
                     boolean success = jsonObject.getBoolean("success"); // 연결 성공시 success = true
 
                     if (success) { // 요청에 성공한 경우
-                        /* 테이블 데이터 출력 시 필요
-                        String category = jsonObject.getString("category");
-                        String details = jsonObject.getString("details");
-                        String info = jsonObject.getString("info");
-                        String location = jsonObject.getString("location");
-                        String point = jsonObject.getString("point");
-                        String period = jsonObject.getString("period");
-                        Log.d("[TAG] 요청 데이터베이스 리스트", "DB 리스트 출력 " + category1);*/
-
                         Toast.makeText(getApplicationContext(), "요청에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                         Log.d("[TAG] 요청 디버깅", "(요청 성공)");
                         Intent intent = new Intent(getApplicationContext(), SimhelpList.class);

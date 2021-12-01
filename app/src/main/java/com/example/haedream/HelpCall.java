@@ -20,8 +20,38 @@ public class HelpCall extends AppCompatActivity {
     Spinner spinner2;
     Spinner spinner3;
     int count_bae = 0, count_clean = 0, count_ins = 0, count_move = 0, count_home = 0, count_any = 0;
+    int[] count_arr = {0, 0, 0, 0, 0, 0};
     boolean checked = false;
     String str;
+
+    /*void func(int count, int[] count_arr, ImageButton btn, ImageButton[] arr) {
+        for(int i=0; i<6; i++) {
+            if(count_arr[i]%2 == 1) {
+                if(count%2==1) {
+                    if(btn.equals(arr[i]) || count==count_arr[i]){
+                        btn.setImageResource(Integer.parseInt("R.drawable."+btn+"2"));
+                        Log.d("[TAG]", String.valueOf(btn));
+                        // str = btn;
+                    } else {
+                        arr[i].setImageResource(Integer.parseInt("R.drawable."+btn+"1"));
+                        count_arr[i] = 0;
+                        Log.d("[TAG]", String.valueOf(count_arr[i]));
+                    }
+                }
+            }
+            else {
+                if(count%2==1){
+                    btn.setImageResource(Integer.parseInt("R.drawable."+btn+"2"));
+                    // str = btn;
+                }
+                else {
+                    btn.setImageResource(Integer.parseInt("R.drawable."+btn+"1"));
+                    // str = null;
+                }
+               // Log.d("[TAG]", String.valueOf(btn));
+            }
+        }
+    }*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,6 +119,8 @@ public class HelpCall extends AppCompatActivity {
         ImageButton anybtn = findViewById(R.id.anything);
         ImageButton backbtn = findViewById(R.id.backhome);
 
+        ImageButton[] btn_arr = {baebtn, movebtn, cleanbtn, homebtn, insectbtn, anybtn};
+
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +133,7 @@ public class HelpCall extends AppCompatActivity {
             public void onClick(View v) {
                 count_bae++;
                 // 다른 카테고리 선택되어있을 때
-                if (count_clean%2 == 1 || count_any%2 == 1 || count_ins%2 == 1 || count_home%2 == 1 || count_move%2 == 1){ // 다른 버튼 선택 시
+                if (count_clean%2 == 1 || count_any%2 == 1 || count_ins%2 == 1 || count_home%2 == 1 || count_move%2 == 1) { // 다른 버튼 선택 시
                     if (count_bae%2 == 1) { // 배달 선택하면 다른 카테고리 값 초기화
                         movebtn.setImageResource(R.drawable.move1);
                         cleanbtn.setImageResource(R.drawable.clean1);
@@ -115,16 +147,15 @@ public class HelpCall extends AppCompatActivity {
                         count_home = 0;
                         count_any = 0;
                         str = "bae";
-                        Log.d("[TAG] str 디버깅 ",str);
+                        Log.d("[TAG] str 디버깅 ", str);
                         checked = true;
                     }
-
                 }
                 else { // 배달 선택 안 했을 때
                     if (count_bae%2 == 1) { // 배달 선택
                         baebtn.setImageResource(R.drawable.bae2);
                         str = "bae";
-                        Log.d("[TAG] str 디버깅 ",str);
+                        Log.d("[TAG] str 디버깅 ", str);
                         checked = true;
                     }
                     else { // 배달 선택 취소
