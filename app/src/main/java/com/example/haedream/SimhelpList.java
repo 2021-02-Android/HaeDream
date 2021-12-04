@@ -1,6 +1,7 @@
 package com.example.haedream;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +47,28 @@ public class SimhelpList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), HelpCall.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+            }
+        });
+
+        // 소개 버튼 클릭 시
+        ImageButton go_intro = findViewById(R.id.go_intro);
+        go_intro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Intro_List.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+            }
+        });
+
+        // 말풍선 버튼(내 심부름 리스트 확인) 클릭 시
+        ImageButton mysim_btn = findViewById(R.id.mysim_btn);
+        mysim_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MySimList.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
             }

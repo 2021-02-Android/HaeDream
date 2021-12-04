@@ -82,6 +82,7 @@ public class MainSCR extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Intro_List.class);
+                intent.putExtra("user_id", user_id);
                 startActivity(intent);
             }
         });
