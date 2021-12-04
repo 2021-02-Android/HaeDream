@@ -15,7 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class HelpCallActivity extends AppCompatActivity {
-    private String category, info, location, details, point, period;
+    private String category, info, location, details, point, period, user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 액티비티 시작시 처음으로 실행되는 생명주기
@@ -31,8 +31,9 @@ public class HelpCallActivity extends AppCompatActivity {
         location = callIntent.getStringExtra("location");
         point = callIntent.getStringExtra("point");
         period = callIntent.getStringExtra("period");
+        user_id = callIntent.getStringExtra("user_id");
 
-        Log.d("[TAG] 요청 디버깅", "사용자 입력값: " + category + details + info + location + point + period + "/[INTENT]");
+        Log.d("[TAG] 요청 디버깅", "사용자 입력값: " + category + details + info + location + point + period + user_id + "/[INTENT]");
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -63,7 +64,7 @@ public class HelpCallActivity extends AppCompatActivity {
         };
 
         // HelpCallRequest.java에 값 넘겨줌
-        HelpCallRequest helpCallRequest = new HelpCallRequest(category, details, info, location, point, period, responseListener);
+        HelpCallRequest helpCallRequest = new HelpCallRequest(category, details, info, location, point, period, user_id, responseListener);
         RequestQueue queue = Volley.newRequestQueue(HelpCallActivity.this);
         queue.add(helpCallRequest);
 

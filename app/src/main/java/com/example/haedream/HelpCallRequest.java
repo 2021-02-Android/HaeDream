@@ -13,7 +13,7 @@ public class HelpCallRequest extends StringRequest {
     private Map<String, String> map;
 
 
-    public HelpCallRequest(String category, String details, String info, String location, String point, String period, Response.Listener<String> listener) {
+    public HelpCallRequest(String category, String details, String info, String location, String point, String period, String user_id, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
@@ -23,6 +23,7 @@ public class HelpCallRequest extends StringRequest {
         map.put("location", location);
         map.put("point", point);
         map.put("period", period);
+        map.put("userid", user_id);
     }
 
     @Override

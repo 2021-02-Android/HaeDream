@@ -3,6 +3,7 @@ package com.example.haedream;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -29,26 +30,37 @@ public class SimhelpList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.helplist);
 
+        String user_id;
+        Intent userintent = getIntent();
+        user_id = userintent.getStringExtra("user_id");
+
         listView = findViewById(R.id.listview);
         arrayList = new ArrayList<>();
 
         new SimhelpList.Select_HelpList_Request().execute();
 
+        // 심부름 요청 버튼 클릭 시
         ImageButton simButton = (ImageButton) findViewById(R.id.callbutton);
         simButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), HelpCall.class);
+                intent.putExtra("user_id", user_id);
                 startActivity(intent);
             }
         });
 
-        // 리스트뷰에서 아이템 클릭 시 mycall.xml 화면 출력
+        SimhelpItemAdapter helpListViewAdapter = new SimhelpItemAdapter(SimhelpList.this, arrayList);
+        // 리스트뷰에서 아이템 클릭 시
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
                 Intent it = new Intent(getApplicationContext(), SimAccept.class);
-                it.putExtra("arrayList intent", "test");
+                it.putExtra("user_id", arrayList.get(a_position).getName());
+                it.putExtra("location", arrayList.get(a_position).getLocation());
+                it.putExtra("info", arrayList.get(a_position).getInfo());
+                it.putExtra("point", arrayList.get(a_position).getPoint());
+               // Log.d("[arrayList intent]", arrayList.get(a_position).getCategory());
                 startActivity(it);
             }
         });
@@ -93,6 +105,7 @@ public class SimhelpList extends AppCompatActivity {
                     String location = Content.getString("location");
                     String info = Content.getString("info");
                     String point = Content.getString("point");
+                    String userid = Content.getString("userid");
 
                     simhelpitem item = new simhelpitem();
 
@@ -101,6 +114,7 @@ public class SimhelpList extends AppCompatActivity {
                     item.setLocation(location);
                     item.setInfo(info);
                     item.setPoint(point);
+                    item.setName(userid);
                     arrayList.add(item);
                 }
             } catch (JSONException e) {

@@ -47,13 +47,14 @@ public class SimhelpItemAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.simhelp_item_list, parent, false);
         }
 
-        TextView sub, substring, point;
+        TextView sub, substring, point, name;
         ImageView category;
 
         category = convertView.findViewById(R.id.category_list);
         sub = convertView.findViewById(R.id.sub);
         substring = convertView.findViewById(R.id.substring);
         point = convertView.findViewById(R.id.point);
+        name = convertView.findViewById(R.id.name);
 
         if(arrayList.get(position).getCategory().equals("bae")){
             category.setImageResource(R.drawable.bae1);
@@ -73,12 +74,13 @@ public class SimhelpItemAdapter extends BaseAdapter {
         if(arrayList.get(position).getCategory().equals("anything")){
             category.setImageResource(R.drawable.anything1);
         }
+
         sub.setText(arrayList.get(position).getDetails() + " | " + arrayList.get(position).getLocation());
         substring.setText("심부름 내용 : " + arrayList.get(position).getInfo());
         point.setText("포인트 : " + arrayList.get(position).getPoint());
+        name.setText("" + arrayList.get(position).getName());
 
         return convertView;
     }
-
 
 }

@@ -42,6 +42,11 @@ public class Login extends AppCompatActivity {
                 loginintent.putExtra("user_id", user_id.getText().toString()); //값 넘길 때 String으로 변환하여 넘겨주자
                 loginintent.putExtra("user_pw", user_pw.getText().toString());
                 startActivity(loginintent); // 필수. 안넣으면 인텐트 안보내짐!
+
+                // 사용자 아이디 인텐트 전달
+                Intent userintent = new Intent(getApplicationContext(), MainSCR.class);
+                userintent.putExtra("userid", user_id.getText().toString());
+                startActivity(userintent);
             }
         });
     }
