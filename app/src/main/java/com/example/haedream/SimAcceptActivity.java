@@ -18,8 +18,7 @@ public class SimAcceptActivity extends AppCompatActivity {
     private String name, location, info, point, accepted;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) { // 액티비티 시작시 처음으로 실행되는 생명주기
-        // 인텐트 사용하고자 하거나, 액티비티로서 사용하려면 OnCreate 필수로 오버라이딩 해줘야한다.
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.simaccept);
 
@@ -48,6 +47,7 @@ public class SimAcceptActivity extends AppCompatActivity {
                         intent.putExtra("user_id", accepted);
                         Log.d("[user_id 인텐트 전달]", accepted);
                         startActivity(intent);
+                        finish();
                     }
 
                     else { // 요청에 실패한 경우
@@ -63,11 +63,10 @@ public class SimAcceptActivity extends AppCompatActivity {
             }
         };
 
-        // HelpCallRequest.java에 값 넘겨줌
+        // SimAcceptRequest.java에 값 넘겨줌
         SimAcceptRequest simAcceptRequest = new SimAcceptRequest(name, info, location, point, accepted, responseListener);
         RequestQueue queue = Volley.newRequestQueue(SimAcceptActivity.this);
         queue.add(simAcceptRequest);
-
-        finish(); // 현재 액티비티 (심부름 요청 화면) 종료
+        finish();
     }
 }

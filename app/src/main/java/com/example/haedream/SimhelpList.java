@@ -20,18 +20,19 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class SimhelpList extends AppCompatActivity {
     ListView listView;
     ArrayList<simhelpitem> arrayList;
+    String user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.helplist);
 
-        String user_id;
         Intent userintent = getIntent();
         user_id = userintent.getStringExtra("user_id");
         Log.d("[user_id 인텐트 받아옴]", user_id);
@@ -49,6 +50,7 @@ public class SimhelpList extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HelpCall.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -60,6 +62,7 @@ public class SimhelpList extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Intro_List.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -71,10 +74,10 @@ public class SimhelpList extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MySimList.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
+                finish();
             }
         });
 
-        SimhelpItemAdapter helpListViewAdapter = new SimhelpItemAdapter(SimhelpList.this, arrayList);
         // 리스트뷰에서 아이템 클릭 시
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -87,8 +90,10 @@ public class SimhelpList extends AppCompatActivity {
                 it.putExtra("user_id", user_id);
                 Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(it);
+                finish();
             }
         });
+
     }
 
     class Select_HelpList_Request extends AsyncTask<String, Integer, String> {
@@ -131,16 +136,19 @@ public class SimhelpList extends AppCompatActivity {
                     String info = Content.getString("info");
                     String point = Content.getString("point");
                     String userid = Content.getString("userid");
+                    String accepted = Content.getString("accepted");
 
                     simhelpitem item = new simhelpitem();
 
-                    item.setCategory(category);
-                    item.setDetails(details);
-                    item.setLocation(location);
-                    item.setInfo(info);
-                    item.setPoint(point);
-                    item.setName(userid);
-                    arrayList.add(item);
+                    if(accepted.equals("none") && !userid.equals(user_id)){
+                        item.setCategory(category);
+                        item.setDetails(details);
+                        item.setLocation(location);
+                        item.setInfo(info);
+                        item.setPoint(point);
+                        item.setName(userid);
+                        arrayList.add(item);
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

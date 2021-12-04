@@ -1,7 +1,7 @@
 package com.example.haedream;
 
 public class MySimItem {
-    String category, info, location, name;
+    String category, info, location, name, point;
 
     public String getCategory() {
         return category;
@@ -28,4 +28,8 @@ public class MySimItem {
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
+
+    public String getPoint() { return point; }
+
+    public void setPoint(String point) { this.point = point; }
 }

@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SimAccept extends AppCompatActivity {
     TextView name, location, info, point;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +58,10 @@ public class SimAccept extends AppCompatActivity {
                 it.putExtra("point", point.getText().toString());
                 it.putExtra("accepted", it_userid);
                 Log.d("[user_id 인텐트 전달]", it_userid);
-                startActivity(it); // 필수. 안넣으면 인텐트 안보내짐!
+                startActivity(it);
+                finish();
             }
         });
+
     }
 }

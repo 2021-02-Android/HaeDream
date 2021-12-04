@@ -39,6 +39,7 @@ public class Intro_List extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SimhelpList.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -49,6 +50,7 @@ public class Intro_List extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), .class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -59,6 +61,7 @@ public class Intro_List extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), .class);
                 startActivity(intent);
+                finish();
             }
         });*/
 

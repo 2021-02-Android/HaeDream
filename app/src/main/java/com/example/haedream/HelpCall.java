@@ -392,6 +392,7 @@ public class HelpCall extends AppCompatActivity {
                     callintent.putExtra("user_id", user_id);
                     callintent.putExtra("accepted", "none");
                     startActivity(callintent);
+                    finish();
                 }
             }
         });
