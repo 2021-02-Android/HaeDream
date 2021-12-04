@@ -62,7 +62,7 @@ public class HelpCall extends AppCompatActivity {
         String user_id;
         Intent userintent = getIntent();
         user_id = userintent.getStringExtra("user_id");
-        Log.d("[TAG] 로그인 아이디 인텐트 전달", user_id);
+        Log.d("[user_id 인텐트 받아옴]", user_id);
 
         View decorView = getWindow().getDecorView();
 
@@ -390,6 +390,7 @@ public class HelpCall extends AppCompatActivity {
                     callintent.putExtra("point", spinner2.getSelectedItem().toString());
                     callintent.putExtra("period", spinner3.getSelectedItem().toString());
                     callintent.putExtra("user_id", user_id);
+                    callintent.putExtra("accepted", "none");
                     startActivity(callintent);
                 }
             }

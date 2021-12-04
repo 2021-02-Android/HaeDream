@@ -46,6 +46,7 @@
         <activity android:name=".Login" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SimAccept" />
+        <activity android:name=".SimAcceptActivity" />
         <activity
             android:name=".MainSCR"
             android:exported="true">

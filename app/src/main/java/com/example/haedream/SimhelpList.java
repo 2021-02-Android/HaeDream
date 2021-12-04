@@ -33,6 +33,7 @@ public class SimhelpList extends AppCompatActivity {
         String user_id;
         Intent userintent = getIntent();
         user_id = userintent.getStringExtra("user_id");
+        Log.d("[user_id 인텐트 받아옴]", user_id);
 
         listView = findViewById(R.id.listview);
         arrayList = new ArrayList<>();
@@ -56,11 +57,12 @@ public class SimhelpList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
                 Intent it = new Intent(getApplicationContext(), SimAccept.class);
-                it.putExtra("user_id", arrayList.get(a_position).getName());
+                it.putExtra("name", arrayList.get(a_position).getName());
                 it.putExtra("location", arrayList.get(a_position).getLocation());
                 it.putExtra("info", arrayList.get(a_position).getInfo());
                 it.putExtra("point", arrayList.get(a_position).getPoint());
-               // Log.d("[arrayList intent]", arrayList.get(a_position).getCategory());
+                it.putExtra("user_id", user_id);
+                Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(it);
             }
         });
