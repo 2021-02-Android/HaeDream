@@ -130,6 +130,7 @@ public class SimhelpList extends AppCompatActivity {
 
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
+                    String name = Content.getString("name");
                     String category = Content.getString("category");
                     String details = Content.getString("details");
                     String location = Content.getString("location");
@@ -146,7 +147,7 @@ public class SimhelpList extends AppCompatActivity {
                         item.setLocation(location);
                         item.setInfo(info);
                         item.setPoint(point);
-                        item.setName(userid);
+                        item.setName(name);
                         arrayList.add(item);
                     }
                 }

@@ -113,6 +113,7 @@ public class MySimList extends AppCompatActivity {
 
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
+                    String name = Content.getString("name");
                     String category = Content.getString("category");
                     String location = Content.getString("location");
                     String info = Content.getString("info");
@@ -127,7 +128,7 @@ public class MySimList extends AppCompatActivity {
                         item.setLocation(location);
                         item.setInfo(info);
                         item.setPoint(point);
-                        item.setName(userid);
+                        item.setName(name);
                         arrayList1.add(item);
                     }
                     if(accepted.equals(user_id)){
@@ -135,7 +136,7 @@ public class MySimList extends AppCompatActivity {
                         item.setLocation(location);
                         item.setInfo(info);
                         item.setPoint(point);
-                        item.setName(userid);
+                        item.setName(name);
                         arrayList2.add(item);
                     }
                 }
