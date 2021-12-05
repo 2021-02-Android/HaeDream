@@ -49,10 +49,6 @@ public class JoinActivity extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                         Log.d("[TAG] 회원가입 디버깅", "(회원가입 성공) 중복 아이디 없음");
-
-                        Intent intent = new Intent(getApplicationContext(), Login.class);
-                        startActivity(intent);
-                        finish();
                     }
 
                     else { // 회원가입에 실패한 경우

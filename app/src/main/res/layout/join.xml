@@ -112,10 +112,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regi_pw" />
-    <!--
-        Spinner item 편집은 values>department.xml 에서하기
-        Spinner 자체에서 밑줄 만들고 싶은데 못하겠어..
-    -->
+
+    <!-- Spinner item 편집은 values>array.xml 에서 :: 학과 추가할 수 있음! -->
+
     <Spinner
         android:id="@+id/regi_depart"
         android:layout_width="300dp"
