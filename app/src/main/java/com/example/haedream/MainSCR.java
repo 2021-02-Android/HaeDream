@@ -107,8 +107,6 @@ public class MainSCR extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
 */
     }
 }
