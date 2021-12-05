@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -21,7 +22,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class SimhelpList extends AppCompatActivity {
     ListView listView;
@@ -78,6 +82,25 @@ public class SimhelpList extends AppCompatActivity {
             }
         });
 
+        // 정렬 체크박스 클릭 시
+        CheckBox checkBox = findViewById(R.id.checkBox);
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 새로운 배열 리스트 생성
+                ArrayList<simhelpitem> sortarray = new ArrayList<simhelpitem>();
+                for (int i=0; i<arrayList.size(); i++){
+                    sortarray.add(arrayList.get(i));
+                }
+                // 내림차순으로 정렬, 오름차순으로 정렬은 reverse() 없애면 됨
+                Collections.sort(sortarray, myComparator);
+                Collections.reverse(sortarray);
+                // 어뎁터에 정렬된 리스트 넣음
+                SimhelpItemAdapter helpListViewAdapter = new SimhelpItemAdapter(SimhelpList.this, sortarray);
+                listView.setAdapter(helpListViewAdapter);
+            }
+        });
+
         // 리스트뷰에서 아이템 클릭 시
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -95,6 +118,15 @@ public class SimhelpList extends AppCompatActivity {
         });
 
     }
+
+    private final static Comparator<simhelpitem> myComparator = new Comparator<simhelpitem>() {
+        private final Collator collator = Collator.getInstance();
+        @Override
+        public int compare(simhelpitem o1, simhelpitem o2) {
+            // Point로 정렬, 배열 리스트 내부의 두 개의 값 비교
+            return collator.compare(o1.getPoint(), o2.getPoint());
+        }
+    };
 
     class Select_HelpList_Request extends AsyncTask<String, Integer, String> {
         String result = null;
