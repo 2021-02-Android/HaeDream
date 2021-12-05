@@ -1,16 +1,19 @@
 package com.example.haedream;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,73 +23,53 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class SimhelpList extends AppCompatActivity {
-    ListView listView;
-    ArrayList<simhelpitem> arrayList;
+public class MySimList extends AppCompatActivity {
+    ListView listView, acceptsimList;
+    ArrayList<simhelpitem> arrayList1, arrayList2;
     String user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.helplist);
+        setContentView(R.layout.mycall);
 
         Intent userintent = getIntent();
         user_id = userintent.getStringExtra("user_id");
         Log.d("[user_id 인텐트 받아옴]", user_id);
 
-        listView = findViewById(R.id.listview);
-        arrayList = new ArrayList<>();
+        listView = findViewById(R.id.callsimList);
+        acceptsimList = findViewById(R.id.acceptsimList);
+        arrayList1 = new ArrayList<>();
+        arrayList2 = new ArrayList<>();
 
-        new SimhelpList.Select_HelpList_Request().execute();
-
-        // 심부름 요청 버튼 클릭 시
-        ImageButton simButton = (ImageButton) findViewById(R.id.callbutton);
-        simButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HelpCall.class);
-                intent.putExtra("user_id", user_id);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // 소개 버튼 클릭 시
-        ImageButton go_intro = findViewById(R.id.go_intro);
-        go_intro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Intro_List.class);
-                intent.putExtra("user_id", user_id);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // 말풍선 버튼(내 심부름 리스트 확인) 클릭 시
-        ImageButton mysim_btn = findViewById(R.id.mysim_btn);
-        mysim_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MySimList.class);
-                intent.putExtra("user_id", user_id);
-                startActivity(intent);
-                finish();
-            }
-        });
+        new MySimList.Select_MySimList_Request().execute();
 
         // 리스트뷰에서 아이템 클릭 시
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
-                Intent it = new Intent(getApplicationContext(), SimAccept.class);
-                it.putExtra("name", arrayList.get(a_position).getName());
-                it.putExtra("location", arrayList.get(a_position).getLocation());
-                it.putExtra("info", arrayList.get(a_position).getInfo());
-                it.putExtra("point", arrayList.get(a_position).getPoint());
+                Intent it = new Intent(getApplicationContext(), MySimCall.class);
+                it.putExtra("name", arrayList1.get(a_position).getName());
+                it.putExtra("location", arrayList1.get(a_position).getLocation());
+                it.putExtra("info", arrayList1.get(a_position).getInfo());
+                it.putExtra("point", arrayList1.get(a_position).getPoint());
+                it.putExtra("user_id", user_id);
+                Log.d("[user_id 인텐트 전달]", user_id);
+                startActivity(it);
+                finish();
+            }
+        });
+
+        acceptsimList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
+                Intent it = new Intent(getApplicationContext(), MySimAccept.class);
+                it.putExtra("name", arrayList2.get(a_position).getName());
+                it.putExtra("location", arrayList2.get(a_position).getLocation());
+                it.putExtra("info", arrayList2.get(a_position).getInfo());
+                it.putExtra("point", arrayList2.get(a_position).getPoint());
                 it.putExtra("user_id", user_id);
                 Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(it);
@@ -96,7 +79,7 @@ public class SimhelpList extends AppCompatActivity {
 
     }
 
-    class Select_HelpList_Request extends AsyncTask<String, Integer, String> {
+    class Select_MySimList_Request extends AsyncTask<String, Integer, String> {
         String result = null;
         @Override
         protected String doInBackground(String... rurls) {
@@ -131,31 +114,38 @@ public class SimhelpList extends AppCompatActivity {
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
                     String category = Content.getString("category");
-                    String details = Content.getString("details");
                     String location = Content.getString("location");
                     String info = Content.getString("info");
-                    String point = Content.getString("point");
                     String userid = Content.getString("userid");
                     String accepted = Content.getString("accepted");
+                    String point = Content.getString("point");
 
                     simhelpitem item = new simhelpitem();
 
-                    if(accepted.equals("none") && !userid.equals(user_id)){
+                    if(userid.equals(user_id)) {
                         item.setCategory(category);
-                        item.setDetails(details);
                         item.setLocation(location);
                         item.setInfo(info);
                         item.setPoint(point);
                         item.setName(userid);
-                        arrayList.add(item);
+                        arrayList1.add(item);
+                    }
+                    if(accepted.equals(user_id)){
+                        item.setCategory(category);
+                        item.setLocation(location);
+                        item.setInfo(info);
+                        item.setPoint(point);
+                        item.setName(userid);
+                        arrayList2.add(item);
                     }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            SimhelpItemAdapter helpListViewAdapter = new SimhelpItemAdapter(SimhelpList.this, arrayList);
-            listView.setAdapter(helpListViewAdapter);
+            MySimItemAdapter mySimItemAdapter1 = new MySimItemAdapter(MySimList.this, arrayList1);
+            listView.setAdapter(mySimItemAdapter1);
+            MySimItemAdapter mySimItemAdapter2 = new MySimItemAdapter(MySimList.this, arrayList2);
+            acceptsimList.setAdapter(mySimItemAdapter2);
         }
     }
-
 }

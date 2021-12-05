@@ -67,12 +67,12 @@
 
     <LinearLayout
         android:layout_width="421dp"
-        android:layout_height="1dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <ListView
             android:id="@+id/callsimList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="280dp" />
     </LinearLayout>
 
     <TextView
@@ -88,7 +88,7 @@
 
     <LinearLayout
         android:layout_width="421dp"
-        android:layout_height="1dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ListView

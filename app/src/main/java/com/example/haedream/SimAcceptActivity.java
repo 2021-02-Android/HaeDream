@@ -14,32 +14,29 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class HelpCallActivity extends AppCompatActivity {
-    private String category, info, location, details, point, period, user_id, accepted;
+public class SimAcceptActivity extends AppCompatActivity {
+    private String name, location, info, point, accepted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.helpcall);
+        setContentView(R.layout.simaccept);
 
-        // HelpCall.java의 인텐트 받아옴
+        // SimAccept.java의 인텐트 받아옴
         Intent callIntent = getIntent();
-        category = callIntent.getStringExtra("category");
-        details = callIntent.getStringExtra("details");
-        info = callIntent.getStringExtra("info");
+        name = callIntent.getStringExtra("name");
         location = callIntent.getStringExtra("location");
+        info = callIntent.getStringExtra("info");
         point = callIntent.getStringExtra("point");
-        period = callIntent.getStringExtra("period");
-        user_id = callIntent.getStringExtra("user_id");
         accepted = callIntent.getStringExtra("accepted");
 
-        Log.d("[TAG] 요청 디버깅", "사용자 입력값: " + category + details + info + location + point + period + user_id + accepted + "/[INTENT]");
+        Log.d("[TAG] 요청 디버깅", "사용자 입력값: " + name + info + location + point + accepted + "/[INTENT]");
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    Log.d("[TAG] 요청 디버깅", "DB 연결 여부 " + response); // 디버깅 - php 파일 전부 보여줌
+                    Log.d("[TAG] 요청 디버깅", "DB 연결 여부 " + response);
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.getBoolean("success"); // 연결 성공시 success = true
 
@@ -47,8 +44,8 @@ public class HelpCallActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "요청에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                         Log.d("[TAG] 요청 디버깅", "(요청 성공)");
                         Intent intent = new Intent(getApplicationContext(), SimhelpList.class);
-                        intent.putExtra("user_id", user_id);
-                        Log.d("[user_id 인텐트 전달]", user_id);
+                        intent.putExtra("user_id", accepted);
+                        Log.d("[user_id 인텐트 전달]", accepted);
                         startActivity(intent);
                         finish();
                     }
@@ -66,11 +63,10 @@ public class HelpCallActivity extends AppCompatActivity {
             }
         };
 
-        // HelpCallRequest.java에 값 넘겨줌
-        HelpCallRequest helpCallRequest = new HelpCallRequest(category, details, info, location, point, period, user_id, accepted, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(HelpCallActivity.this);
-        queue.add(helpCallRequest);
-
-   //     finish(); // 현재 액티비티 (심부름 요청 화면) 종료
+        // SimAcceptRequest.java에 값 넘겨줌
+        SimAcceptRequest simAcceptRequest = new SimAcceptRequest(name, info, location, point, accepted, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(SimAcceptActivity.this);
+        queue.add(simAcceptRequest);
+        finish();
     }
 }

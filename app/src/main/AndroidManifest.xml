@@ -46,6 +46,14 @@
         <activity android:name=".Login" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SimAccept" />
+        <activity android:name=".SimAcceptActivity" />
+        <activity android:name=".MySimCall" />
+        <activity android:name=".MySimCallActivity" />
+        <activity android:name=".MySimAccept" />
+        <activity android:name=".MySimAcceptCancelActivity" />
+        <activity android:name=".Intro_List" />
+        <activity android:name=".MySimList" />
+        <activity android:name=".MySimAcceptFinishActivity" />
         <activity
             android:name=".MainSCR"
             android:exported="true">

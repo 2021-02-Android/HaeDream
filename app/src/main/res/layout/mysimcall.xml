@@ -11,7 +11,7 @@
         android:backgroundTint="#A7BAF3"
         android:fontFamily="@font/font_bold"
         android:gravity="center"
-        android:text=" 심부름 수락 "
+        android:text=" 내가 요청한 심부름 "
         android:textColor="@color/black"
         android:textSize="15dp" />
 
@@ -161,7 +161,7 @@
         android:weightSum="1">
 
         <Button
-            android:id="@+id/cancelbtn"
+            android:id="@+id/okbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
@@ -170,28 +170,28 @@
             android:backgroundTint="#4E4D4D"
             android:fontFamily="@font/font_bold"
             android:gravity="center"
-            android:text="취    소"
+            android:text="확    인"
             android:textColor="@color/white"/>
 
         <Button
-            android:id="@+id/acceptbtn"
+            android:id="@+id/cancelbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_weight="0.2"
             android:backgroundTint="#98C1E4"
+            android:fontFamily="@font/font_bold"
             android:gravity="center"
-            android:text="수    락"
-            android:fontFamily="@font/font_bold"/>
+            android:text="요청 취소하기" />
 
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
+        android:layout_marginLeft="100dp"
         android:fontFamily="@font/font_medium"
-        android:text="수락시 심부름을 진행합니다."
+        android:text="요청 취소하기를 누르면 심부름 요청이 취소됩니다."
         android:textColor="#F33232"
         android:textSize="10dp" />
 
