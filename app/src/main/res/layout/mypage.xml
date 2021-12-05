@@ -178,4 +178,53 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_medium"
+            android:text="소개 : "
+            android:textAlignment="textEnd"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:id="@+id/user_info"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/change_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/login_button"
+        android:fontFamily="@font/font_medium"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:text="정보 수정하기" />
+
+    <TextView
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font_medium"
+        android:text="회원가입시 입력한 정보는 변경할 수 없으며, 소개만 변경 가능합니다."
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="12dp" />
+
 0</LinearLayout>

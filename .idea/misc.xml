@@ -8,12 +8,17 @@
         <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/drawable/input_white.xml" value="0.38229166666666664" />
         <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/drawable/login_button.xml" value="0.38229166666666664" />
         <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/change_pw.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/change_userinfo.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/chatting_room.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/helpcall.xml" value="0.365036231884058" />
         <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/helplist.xml" value="0.365036231884058" />
         <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/introduce_list.xml" value="0.24427083333333333" />
         <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/join.xml" value="0.365036231884058" />
         <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/login.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/main_screen.xml" value="0.33" />
+        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/mypage.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/setting.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidProgramming/HaeDream/app/src/main/res/layout/simhelp_item_list.xml" value="0.365036231884058" />
       </map>
     </option>
