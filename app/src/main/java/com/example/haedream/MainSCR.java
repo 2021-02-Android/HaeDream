@@ -19,7 +19,7 @@ public class MainSCR extends AppCompatActivity {
 
         String user_id;
         Intent userintent = getIntent();
-        user_id = userintent.getStringExtra("userid");
+        user_id = userintent.getStringExtra("user_id");
         Log.d("[TAG] 로그인 아이디 인텐트 전달", user_id);
 
         // 설정 버튼
