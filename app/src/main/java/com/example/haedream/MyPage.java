@@ -76,6 +76,7 @@ public class MyPage extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ChangeInfo.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
+                finish();
             }
         });
     }

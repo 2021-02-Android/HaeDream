@@ -88,6 +88,7 @@ public class ChangeInfo extends AppCompatActivity {
                 intent.putExtra("user_id", user_id);
                 intent.putExtra("intro", tvNew.getText().toString()); // 사용자 입력 - 수정할 소개
                 startActivity(intent);
+                finish();
             }
         });
     }

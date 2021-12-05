@@ -37,6 +37,9 @@ public class ChangeInfoActivity extends AppCompatActivity {
 
                     if (success) { // 요청에 성공한 경우
                         Toast.makeText(getApplicationContext(), "소개 수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(getApplicationContext(), MyPage.class);
+                        intent2.putExtra("user_id", user_id);
+                        startActivity(intent2);
                         Log.d("[TAG] 소개 수정 디버깅", "(성공)");
                         return;
                     }
@@ -58,7 +61,6 @@ public class ChangeInfoActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(ChangeInfoActivity.this);
         queue.add(changeInfoRequest);
 
-        ChangeInfo changeInfo = new ChangeInfo();
         finish();
     }
 }
