@@ -126,7 +126,7 @@ public class Intro_List extends AppCompatActivity {
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
                     String userid = Content.getString("name");
-                    String depart = Content.getString("tel");
+                    String depart = Content.getString("dept");
 
                     IntroListItem item = new IntroListItem();
 

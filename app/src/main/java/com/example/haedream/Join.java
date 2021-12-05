@@ -38,6 +38,7 @@ public class Join extends AppCompatActivity {
         Button joinButton = (Button) findViewById(R.id.join);
         EditText regi_id = findViewById(R.id.regi_id);
         EditText regi_pw = findViewById(R.id.regi_pw);
+        EditText regi_name = findViewById(R.id.user_name);
         EditText regi_first_num = findViewById(R.id.regi_first_num);
         EditText regi_second_num = findViewById(R.id.regi_second_num);
         EditText regi_birth = findViewById(R.id.regi_birth);
@@ -54,6 +55,7 @@ public class Join extends AppCompatActivity {
                 // 사용자가 EditText에 입력한 값 String으로 변환하여 변수에 저장
                 String id = regi_id.getText().toString();
                 String pw = regi_pw.getText().toString();
+                String name = regi_name.getText().toString();
                 String fnum = regi_first_num.getText().toString();
                 String snum = regi_second_num.getText().toString();
                 String depart = spinner.getSelectedItem().toString();
@@ -89,10 +91,12 @@ public class Join extends AppCompatActivity {
                     Intent joinintent = new Intent(getApplicationContext(), JoinActivity.class);
                     joinintent.putExtra("regi_id", id);
                     joinintent.putExtra("regi_pw", pw);
+                    joinintent.putExtra("regi_name", name);
                     joinintent.putExtra("regi_phonenum", "010" + fnum + snum);
                     joinintent.putExtra("regi_depart", depart);
                     joinintent.putExtra("regi_birth", birth);
                     startActivity(joinintent); // 필수. 안넣으면 인텐트 안보내짐!
+                    finish();
                 }
             }
         });

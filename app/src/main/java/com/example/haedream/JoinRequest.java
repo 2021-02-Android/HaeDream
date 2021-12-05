@@ -13,14 +13,15 @@ public class JoinRequest extends StringRequest {
     private Map<String, String> map;
 
 
-    public JoinRequest(String userID, String userPW, String dept, String tel, String birth, Response.Listener<String> listener) {
+    public JoinRequest(String userID, String userPW, String name, String tel, String dept, String birth, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
         map.put("userID", userID);
         map.put("userPW", userPW);
-        map.put("dept", dept);
+        map.put("name", name);
         map.put("tel", tel);
+        map.put("dept", dept);
         map.put("birth", birth);
     }
 
