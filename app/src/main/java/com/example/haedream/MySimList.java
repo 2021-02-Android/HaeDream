@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class MySimList extends AppCompatActivity {
     ListView listView, acceptsimList;
-    ArrayList<MySimItem> arrayList1, arrayList2;
+    ArrayList<simhelpitem> arrayList1, arrayList2;
     String user_id;
 
     @Override
@@ -120,7 +120,7 @@ public class MySimList extends AppCompatActivity {
                     String accepted = Content.getString("accepted");
                     String point = Content.getString("point");
 
-                    MySimItem item = new MySimItem();
+                    simhelpitem item = new simhelpitem();
 
                     if(userid.equals(user_id)) {
                         item.setCategory(category);

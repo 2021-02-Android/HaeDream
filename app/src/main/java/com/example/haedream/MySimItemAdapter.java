@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class MySimItemAdapter extends BaseAdapter {
     Context context;
-    ArrayList<MySimItem> arrayList;
+    ArrayList<simhelpitem> arrayList;
 
-    public MySimItemAdapter(Context context, ArrayList<MySimItem> arrayList) {
+    public MySimItemAdapter(Context context, ArrayList<simhelpitem> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
