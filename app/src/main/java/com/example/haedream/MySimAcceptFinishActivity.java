@@ -46,6 +46,7 @@ public class MySimAcceptFinishActivity extends AppCompatActivity {
                         Log.d("[user_id 인텐트 전달]", userid);
                         startActivity(intent);
                         finish();
+                        return;
                     }
                     else { // 요청에 실패한 경우
                         Toast.makeText(getApplicationContext(), "요청에 실패하였습니다.", Toast.LENGTH_SHORT).show();

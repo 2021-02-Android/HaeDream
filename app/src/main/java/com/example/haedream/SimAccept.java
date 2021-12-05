@@ -42,7 +42,11 @@ public class SimAccept extends AppCompatActivity {
          cancelbtn.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                finish();
+                 Intent intent = new Intent(getApplicationContext(), SimhelpList.class);
+                 intent.putExtra("user_id", it_userid);
+                 Log.d("[user_id 인텐트 전달]", it_userid);
+                 startActivity(intent);
+                 finish();
             }
          });
 

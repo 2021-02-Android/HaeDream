@@ -47,7 +47,7 @@ public class SimAcceptActivity extends AppCompatActivity {
                         intent.putExtra("user_id", accepted);
                         Log.d("[user_id 인텐트 전달]", accepted);
                         startActivity(intent);
-                        finish();
+                        return;
                     }
 
                     else { // 요청에 실패한 경우
