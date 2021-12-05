@@ -84,7 +84,7 @@
         android:fontFamily="@font/font_medium"/>
 
     <EditText
-        android:id="@+id/nowPW"
+        android:id="@+id/nowInfo"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -124,7 +124,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/newPW"
+        android:id="@+id/newInfo"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"

@@ -55,6 +55,7 @@
         <activity android:name=".MySimList" />
         <activity android:name=".MySimAcceptFinishActivity" />
         <activity android:name=".ChangeInfo" />
+        <activity android:name=".ChangeInfoActivity" />
         <activity
             android:name=".MainSCR"
             android:exported="true">
