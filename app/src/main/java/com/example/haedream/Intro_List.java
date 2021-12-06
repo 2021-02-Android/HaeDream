@@ -49,7 +49,7 @@ public class Intro_List extends AppCompatActivity {
                 it.putExtra("name", arrayList.get(a_position).getName());
                 it.putExtra("depart", arrayList.get(a_position).getDepart());
                 it.putExtra("intro", arrayList.get(a_position).getIntro());
-                // it.putExtra("otherid", other_id);
+                it.putExtra("other_id", arrayList.get(a_position).getOther_id());
                 it.putExtra("user_id", user_id);
                 Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(it);
@@ -121,9 +121,11 @@ public class Intro_List extends AppCompatActivity {
                     String name = Content.getString("name");
                     String depart = Content.getString("dept");
                     String intro = Content.getString("intro");
+                    String other_id = Content.getString("userid");
 
                     IntroListItem item = new IntroListItem();
 
+                    item.setOther_id(other_id);
                     item.setName(name);
                     item.setDepart(depart);
                     item.setIntro(intro);

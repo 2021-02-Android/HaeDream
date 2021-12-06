@@ -66,20 +66,14 @@ public class IntroInfo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent it = new Intent(getApplicationContext(), ChatActivity.class);
                 it.putExtra("name", name.getText().toString());
-                it.putExtra("sysUser",it_userid);
-                it.putExtra("other",other_id);
+                it.putExtra("sysUser",it_userid); // 현재 사용자
+                it.putExtra("other",other_id);      // 상대방 아이디
+                Log.d("[user_id 인텐트 전달]", it_userid);
+                Log.d("[other_id 인텐트 전달]", other_id);
+                startActivity(it);
+                finish();
             }
         });
-
-
-
-
-
-
-
-
-
-
 
     }
 }
