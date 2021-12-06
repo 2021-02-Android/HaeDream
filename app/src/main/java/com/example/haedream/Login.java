@@ -1,6 +1,7 @@
 package com.example.haedream;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,13 +9,49 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.kakao.sdk.auth.model.OAuthToken;
+import com.kakao.sdk.user.UserApiClient;
+import com.kakao.sdk.user.model.User;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
+
 public class Login extends AppCompatActivity {
     EditText user_id;
+    private final static String TAG = "kakao debug";
+    private Button kakaoAuth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        Function2<OAuthToken, Throwable, Unit> callback = new Function2<OAuthToken, Throwable, Unit>() {
+            @Override
+            public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
+                if (oAuthToken != null) {
+                    Log.i("user", oAuthToken.getAccessToken() + " " + oAuthToken.getRefreshToken());
+                }
+                if (throwable != null) {
+                    Log.w(TAG, "invoke: " + throwable.getLocalizedMessage());
+                }
+                updateKakaoLoginUi();
+                return null;
+            }
+        };  // Kakao SDK
+
+        kakaoAuth = findViewById(R.id.kakao_auth_button);
+        kakaoAuth.setOnClickListener(new View.OnClickListener() {
+            // 카카오톡 로그인 버튼 클릭 시 Login with kakao
+            @Override public void onClick(View v) {
+                if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(Login.this)) {
+                    // 스마트폰에 카카오톡 설치된 경우 - AVD로 실행할 때 없어서 else문(웹)으로 열림
+                    UserApiClient.getInstance().loginWithKakaoTalk(Login.this, callback);
+                } else {
+                    UserApiClient.getInstance().loginWithKakaoAccount(Login.this, callback);
+                }
+            }
+        });
 
         // 회원가입 버튼 누를 시 이동
         Button imageButton = (Button) findViewById(R.id.go_join);
@@ -30,7 +67,6 @@ public class Login extends AppCompatActivity {
         Button loginButton = (Button) findViewById(R.id.login);
         user_id = findViewById(R.id.user_id);
         EditText user_pw = findViewById(R.id.user_pw);
-
 
         // 로그인 버튼 누를 시 LoginActivity.java에 값 전달. 로그인 성공시 메인 화면으로 이동
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -48,4 +84,31 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    public void onKakaoLoginResult(User user){
+        // callback - 미작성.. 뭐에 쓰는 거더라
+    }
+
+    void updateKakaoLoginUi() {
+        // 카카오 UI 가져오는 메소드 (로그인 핵심 기능)
+        UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+            @Override
+            public Unit invoke(User user, Throwable throwable) {
+                if (user != null) {  // 로그인 성공시 (유저 정보가 정상 전달 되었을 경우)
+                    Log.i(TAG, "id " + user.getId());  // 고유 아이디 (발급되는 번호인듯?)
+                    Log.i(TAG, "invoke: nickname=" + user.getKakaoAccount().getProfile().getNickname());  // 사용자 이름 (카톡에서 설정한 거)
+                    Log.i(TAG, "userimage " + user.getKakaoAccount().getProfile().getProfileImageUrl());  // 프로필 사진 URL
+
+                    Intent intent = new Intent(getApplicationContext(), KakaoLogin.class);  // 카카오톡 회원가입으로 넘어감 DB not null이라 입력해줘야함
+                    intent.putExtra("user_id", user.getId().toString());  // getId로 불러온 값 String이 아닌지 toString 안하면 오류발생
+                    intent.putExtra("user_name", user.getKakaoAccount().getProfile().getNickname());
+                    startActivity(intent);
+                } if (throwable != null) {  // 로그인 오류 발생 - 거의 발생 안하지만 예외처리 위해 적어둠
+                    // 예외사항 : 키해시 등록 되지 않은 경우.
+                    // 개발자 여러 명인 경우 키해시 전부 등록해줘야 된다!
+                    Log.w(TAG, "invoke: " + throwable.getLocalizedMessage());
+                }
+                return null;
+            }
+        });
+    }
 }

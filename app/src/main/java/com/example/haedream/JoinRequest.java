@@ -12,7 +12,6 @@ public class JoinRequest extends StringRequest {
     final static private String URL = "http://idox23.cafe24.com/Join.php";
     private Map<String, String> map;
 
-
     public JoinRequest(String userID, String userPW, String name, String tel, String dept, String birth, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 

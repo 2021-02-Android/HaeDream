@@ -10,4 +10,5 @@
     <string name="phone"><u>010</u></string>
     <string name="Loding">잠시 후 앱이 실행 됩니다.</string>
     <string name="kakao_app_key">7518e8364d62f90d52dce0743a7c3509</string>
+    <string name="kakao_native_key">kakao7518e8364d62f90d52dce0743a7c3509</string>
 </resources>
