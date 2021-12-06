@@ -65,19 +65,74 @@ public class Setting extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(Setting.this)
-                        .setMessage("로그아웃 하시겠습니까?") // 팝업 메시지 띄우기
+                    .setMessage("로그아웃 하시겠습니까?") // 팝업 메시지 띄우기
+                    .setPositiveButton("예", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // "예" 버튼 클릭시 동작부
+                            dialog.dismiss(); //팝업창 종료
+
+                            ActivityCompat.finishAffinity(Setting.this); // 모든 액티비티 종료
+
+                            Intent intent = new Intent(getApplicationContext(), Login.class);
+                            startActivity(intent); // 로그인 창 실행
+
+                            Toast.makeText(getApplicationContext(), "정상적으로 로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // "아니오" 버튼 클릭시 동작부
+                            dialog.dismiss(); //팝업창 종료
+                        }
+                    }).show();
+            }
+        });
+
+        // 탈퇴
+        Button withdraw = (Button) findViewById(R.id.withdrawal);
+        withdraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(Setting.this)
+                        .setMessage("탈퇴 하시겠습니까?") // 팝업 메시지 띄우기
                         .setPositiveButton("예", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                /*
                                 // "예" 버튼 클릭시 동작부
-                                dialog.dismiss(); //팝업창 종료
+                                UserManagement.getInstance().requestUnlink(new UnLinkResponseCallback() {
+                                    @Override
+                                    public void onFailure(ErrorResult errorResult) {
+                                        //회원탈퇴 실패 시 동작
+                                    }
 
-                                ActivityCompat.finishAffinity(Setting.this); // 모든 액티비티 종료
+                                    @Override
+                                    public void onSessionClosed(ErrorResult errorResult) {
+                                        //세션이 닫혔을 시 동작.
+                                    }
 
-                                Intent intent = new Intent(getApplicationContext(), Login.class);
-                                startActivity(intent); // 로그인 창 실행
+                                    @Override
+                                    public void onNotSignedUp() {
+                                        //가입되지 않은 계정이 회원탈퇴를 요구할 경우 동작.
+                                    }
 
-                                Toast.makeText(getApplicationContext(), "정상적으로 로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+                                    @Override
+                                    public void onSuccess(Long result) {
+                                        //회원탈퇴 성공 시 동작.
+                                        dialog.dismiss(); //팝업창 종료
+
+                                        ActivityCompat.finishAffinity(Setting.this); // 모든 액티비티 종료
+
+                                        Intent intent = new Intent(getApplicationContext(), Login.class);
+                                        startActivity(intent); // 로그인 창 실행
+
+                                        Toast.makeText(getApplicationContext(), "정상적으로 로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                 */
                             }
                         })
                         .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
@@ -87,15 +142,6 @@ public class Setting extends AppCompatActivity {
                                 dialog.dismiss(); //팝업창 종료
                             }
                         }).show();
-            }
-        });
-
-        // 탈퇴
-        Button withdraw = (Button) findViewById(R.id.withdrawal);
-        withdraw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
 

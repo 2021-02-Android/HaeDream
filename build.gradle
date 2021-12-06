@@ -13,6 +13,14 @@ buildscript {
     }
 }
 
+allprojects { // 카카오 API 사용 위함
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
