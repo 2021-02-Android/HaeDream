@@ -64,7 +64,7 @@ public class ChangeInfo extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),Setting.class);
+                Intent intent = new Intent(getApplicationContext(),MyPage.class);
                 startActivity(intent);
             }
         });
