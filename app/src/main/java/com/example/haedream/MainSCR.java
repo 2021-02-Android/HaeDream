@@ -22,16 +22,6 @@ public class MainSCR extends AppCompatActivity {
         user_id = userintent.getStringExtra("user_id");
         Log.d("[TAG] 로그인 아이디 인텐트 전달", user_id);
 
-        // 설정 버튼
-        ImageButton set = (ImageButton) findViewById(R.id.setting);
-        set.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Setting.class);
-                startActivity(intent);
-            }
-        });
-
         // 마이페이지 버튼
         ImageButton my = (ImageButton) findViewById(R.id.mypage);
         my.setOnClickListener(new View.OnClickListener() {
@@ -40,19 +30,19 @@ public class MainSCR extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPage.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
+                finish();
             }
         });
-/*
-     //   *** 각 함수에 Intent intent = new Intent(getApplicationContext(), javaname.class); 여기에서
-     //   *** 'javaname'에 설정, 마이페이지, 심부름, 기부, 거래, 소개 java class 이름 그대로 갖다 붙이면 됨 !!
 
-        // 설정 버튼 누를 시 설정 화면 이동
+        // 설정 버튼
         ImageButton setButton = (ImageButton) findViewById(R.id.setting);
         setButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), javaname.class);
+                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                intent.putExtra("user_id", user_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -61,11 +51,13 @@ public class MainSCR extends AppCompatActivity {
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), javaname.class);
+                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                intent.putExtra("user_id", user_id);
                 startActivity(intent);
+                finish();
             }
         });
-*/
+
         // 심부름 버튼 누를 시 심부름 화면 이동
         ImageButton simButton = (ImageButton) findViewById(R.id.simbu_button);
         simButton.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +66,7 @@ public class MainSCR extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SimhelpList.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -85,28 +78,9 @@ public class MainSCR extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Intro_List.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
+                finish();
             }
         });
 
-    /*    // 기부 버튼 누를 시 기부 화면 이동
-        ImageButton donaButton = (ImageButton) findViewById(R.id.dona_button);
-        donaButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), javaname.class);
-                startActivity(intent);
-            }
-        });
-
-        // 거래 버튼 누를 시 거래 화면 이동
-        ImageButton transButton = (ImageButton) findViewById(R.id.trans_button);
-        transButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), javaname.class);
-                startActivity(intent);
-            }
-        });
-*/
     }
 }
