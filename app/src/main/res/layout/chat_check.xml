@@ -27,7 +27,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/category_list"
+            android:id="@+id/image"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginLeft="50dp"
@@ -93,7 +93,7 @@
         android:layout_marginTop="15dp"/>
 
     <TextView
-        android:id="@+id/substring"
+        android:id="@+id/intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="반갑습니다. 컴퓨터소프트웨어공학과 19학번 학생입니다. 23대 학생회 부학회장을 맡고 있습니다. 같이 대화해요!"

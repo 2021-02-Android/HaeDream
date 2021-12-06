@@ -41,14 +41,15 @@ public class Intro_List extends AppCompatActivity {
 
         new Intro_List.Select_HelpList_Request().execute();
 
-        // 리스트뷰에서 아이템 클릭 시 채팅방으로 이동
+        // 리스트뷰에서 아이템 클릭 시
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
-                Intent it = new Intent(getApplicationContext(), ChatActivity.class);
-                it.putExtra("othername", arrayList.get(a_position).getName());
+                Intent it = new Intent(getApplicationContext(), IntroInfo.class);
+                it.putExtra("name", arrayList.get(a_position).getName());
                 it.putExtra("depart", arrayList.get(a_position).getDepart());
-                it.putExtra("userid", arrayList.get(a_position).getUserid());
+                it.putExtra("intro", arrayList.get(a_position).getIntro());
+                // it.putExtra("otherid", other_id);
                 it.putExtra("user_id", user_id);
                 Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(it);
@@ -117,13 +118,13 @@ public class Intro_List extends AppCompatActivity {
 
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
-                    String userid = Content.getString("name");
+                    String name = Content.getString("name");
                     String depart = Content.getString("dept");
                     String intro = Content.getString("intro");
 
                     IntroListItem item = new IntroListItem();
 
-                    item.setName(userid);
+                    item.setName(name);
                     item.setDepart(depart);
                     item.setIntro(intro);
                     arrayList.add(item);
