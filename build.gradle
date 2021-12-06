@@ -13,11 +13,11 @@ buildscript {
     }
 }
 
-allprojects { // 카카오 API 사용 위함
+allprojects{
     repositories {
-        google()
-        jcenter()
-        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
+        //google()
+        //jcenter()
+        //maven {url 'https://devrepo.kakao.com/nexus/content/groups/public/'}
     }
 }
 
