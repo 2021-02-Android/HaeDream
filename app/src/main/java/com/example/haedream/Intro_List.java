@@ -41,14 +41,29 @@ public class Intro_List extends AppCompatActivity {
 
         new Intro_List.Select_HelpList_Request().execute();
 
+        // 리스트뷰에서 아이템 클릭 시 채팅방으로 이동
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
+                Intent it = new Intent(getApplicationContext(), ChatActivity.class);
+                it.putExtra("othername", arrayList.get(a_position).getName());
+                it.putExtra("depart", arrayList.get(a_position).getDepart());
+                it.putExtra("userid", arrayList.get(a_position).getUserid());
+                it.putExtra("user_id", user_id);
+                Log.d("[user_id 인텐트 전달]", user_id);
+                startActivity(it);
+                finish();
+            }
+        });
+
+
 
         // 말풍선 버튼 누를 시 이동
         ImageButton list = (ImageButton) findViewById(R.id.list_btn);
         list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // ConvertList.class로 변경해야함 ((추가예정))
-                Intent intent = new Intent(getApplicationContext(), Intro_List.class);
+                Intent intent = new Intent(getApplicationContext(), ConvertList.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
                 finish();
@@ -66,29 +81,6 @@ public class Intro_List extends AppCompatActivity {
                 finish();
             }
         });
-
-        // 기부 버튼 누를 시 이동
-/*        ImageButton give = (ImageButton) findViewById(R.id.go_give);
-        give.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), .class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // 거래 버튼 누를 시 이동
-        ImageButton imageButton = (ImageButton) findViewById(R.id.go_garae);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), .class);
-                startActivity(intent);
-                finish();
-            }
-        });*/
-
     }
 
     class Select_HelpList_Request extends AsyncTask<String, Integer, String> {
@@ -127,11 +119,13 @@ public class Intro_List extends AppCompatActivity {
                     JSONObject Content = results.getJSONObject(index);
                     String userid = Content.getString("name");
                     String depart = Content.getString("dept");
+                    String intro = Content.getString("intro");
 
                     IntroListItem item = new IntroListItem();
 
                     item.setName(userid);
                     item.setDepart(depart);
+                    item.setIntro(intro);
                     arrayList.add(item);
 
                 }

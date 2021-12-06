@@ -39,13 +39,15 @@ public class IntroListAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.intro_item_list, parent, false);
         }
 
-        TextView name, depart;
+        TextView name, depart, intro;
 
         name = convertView.findViewById(R.id.name);
         depart = convertView.findViewById(R.id.depart);
+        intro = convertView.findViewById(R.id.intro_writing);
 
         name.setText("" + arrayList.get(position).getName());
         depart.setText("" + arrayList.get(position).getDepart());
+        intro.setText(""+arrayList.get(position).getIntro());
 
         return convertView;
     }
