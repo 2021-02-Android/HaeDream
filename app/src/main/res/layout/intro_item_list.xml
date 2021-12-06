@@ -45,29 +45,13 @@
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/star" />
-
-            <TextView
-                android:id="@+id/score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/font_medium"
-                android:text="4.3"
-                android:textColor="@color/black"
-                android:textSize="15dp"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
-                android:text="|"
+                android:text="학과 : "
                 android:fontFamily="@font/font_medium"
                 android:textSize="15dp"/>
 
@@ -94,6 +78,7 @@
                 android:id="@+id/intro_writing"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="30dp"
                 android:fontFamily="@font/font_medium"
                 android:text="반갑습니다. 컴퓨터소프트웨어공학과 19학번 학생입니다.
                 23대 학생회 부학회장을 맡고 있습니다. 같이 대화해요!"

@@ -1,7 +1,7 @@
 package com.example.haedream;
 
 public class IntroListItem {
-    String name, depart, userid, intro;
+    String name, depart, userid, intro, other_id;
 
     public String getName() { return name; }
 
@@ -18,4 +18,12 @@ public class IntroListItem {
     public void setIntro(String intro) { this.intro = intro; }
 
     public String getIntro() { return intro; }
+
+    public void setOther_id(String other_id) {
+        this.other_id = other_id;
+    }
+
+    public String getOther_id() {
+        return other_id;
+    }
 }
