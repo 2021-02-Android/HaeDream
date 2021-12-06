@@ -3,6 +3,7 @@ package com.example.haedream;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,7 +17,10 @@ public class MainSCR extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
 
-
+        String user_id;
+        Intent userintent = getIntent();
+        user_id = userintent.getStringExtra("user_id");
+        Log.d("[TAG] 로그인 아이디 인텐트 전달", user_id);
 
         // 설정 버튼
         ImageButton set = (ImageButton) findViewById(R.id.setting);
@@ -34,6 +38,7 @@ public class MainSCR extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                intent.putExtra("user_id", user_id);
                 startActivity(intent);
             }
         });
@@ -67,6 +72,7 @@ public class MainSCR extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SimhelpList.class);
+                intent.putExtra("user_id", user_id);
                 startActivity(intent);
             }
         });
@@ -77,6 +83,7 @@ public class MainSCR extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Intro_List.class);
+                intent.putExtra("user_id", user_id);
                 startActivity(intent);
             }
         });
@@ -100,8 +107,6 @@ public class MainSCR extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
 */
     }
 }

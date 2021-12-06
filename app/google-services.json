@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "723108262245",
+    "project_id": "headream-72d3b",
+    "storage_bucket": "headream-72d3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723108262245:android:c25833a62f69ac13e8318c",
+        "android_client_info": {
+          "package_name": "com.example.haedream"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723108262245-fmhcihtem5isbtn098jv144pu76u2k3u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.haedream",
+            "certificate_hash": "00bbe10fe2c60999512db6b4be27f5e6e6ff8ea9"
+          }
+        },
+        {
+          "client_id": "723108262245-t1jpo3ntarkfns3cjqkdp2mp6gf1isnl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnhUN_ExvXUC2MDxrodUiMkZYRSqb0y-I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723108262245-t1jpo3ntarkfns3cjqkdp2mp6gf1isnl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

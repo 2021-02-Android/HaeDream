@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
+    EditText user_id;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,8 +28,9 @@ public class Login extends AppCompatActivity {
 
         // 사용자가 입력한 값 받아옴.
         Button loginButton = (Button) findViewById(R.id.login);
-        EditText user_id = findViewById(R.id.user_id);
+        user_id = findViewById(R.id.user_id);
         EditText user_pw = findViewById(R.id.user_pw);
+
 
         // 로그인 버튼 누를 시 LoginActivity.java에 값 전달. 로그인 성공시 메인 화면으로 이동
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -45,4 +47,5 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
 }

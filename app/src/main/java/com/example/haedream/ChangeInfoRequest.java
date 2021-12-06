@@ -7,22 +7,18 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JoinRequest extends StringRequest {
+class ChangeInfoRequest extends StringRequest {
     // 서버 URL 설정 ( PHP 파일 연동 - Database 바로 접근 불가, php 중간 매체로 파싱하여 사용 )
-    final static private String URL = "http://idox23.cafe24.com/Join.php";
+    // php 파일 변경 시 수정 해야 함
+    final static private String URL = "http://idox23.cafe24.com/info_update.php";
     private Map<String, String> map;
 
-
-    public JoinRequest(String userID, String userPW, String name, String tel, String dept, String birth, Response.Listener<String> listener) {
+    public ChangeInfoRequest(String name, String info, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("userID", userID);
-        map.put("userPW", userPW);
-        map.put("name", name);
-        map.put("tel", tel);
-        map.put("dept", dept);
-        map.put("birth", birth);
+        map.put("userID", name);
+        map.put("intro", info);
     }
 
     @Override

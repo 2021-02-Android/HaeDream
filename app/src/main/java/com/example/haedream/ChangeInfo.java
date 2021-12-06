@@ -5,12 +5,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,83 +27,78 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Intro_List extends AppCompatActivity {
-    ListView listView;
-    ArrayList<IntroListItem> arrayList;
+public class ChangeInfo extends AppCompatActivity {
+
     String user_id;
+    TextView tvNow, tvNew;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.introduce_list);
+        setContentView(R.layout.change_userinfo);
 
         Intent userintent = getIntent();
         user_id = userintent.getStringExtra("user_id");
-        Log.d("[user_id 인텐트 받아옴]", user_id);
+        Log.d("[TAG] 로그인 아이디 인텐트 전달", user_id);
 
-        listView = findViewById(R.id.intro_listview);
-        arrayList = new ArrayList<>();
+        tvNow = findViewById(R.id.nowInfo);
+        tvNew = findViewById(R.id.newInfo);
 
-        new Intro_List.Select_HelpList_Request().execute();
+        new ChangeInfo.Select_Info_Request().execute();
 
-
-        // 말풍선 버튼 누를 시 이동
-        ImageButton list = (ImageButton) findViewById(R.id.list_btn);
-        list.setOnClickListener(new View.OnClickListener() {
+        // 설정 버튼
+        ImageButton set = (ImageButton) findViewById(R.id.setting);
+        set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // ConvertList.class로 변경해야함 ((추가예정))
-                Intent intent = new Intent(getApplicationContext(), Intro_List.class);
+                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                startActivity(intent);
+            }
+        });
+
+        // 뒤로가기 버튼
+        ImageButton back = (ImageButton) findViewById(R.id.list_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Setting.class);
+                startActivity(intent);
+            }
+        });
+
+        // 마이페이지 버튼
+        ImageButton my = (ImageButton) findViewById(R.id.mypage);
+        my.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                startActivity(intent);
+            }
+        });
+
+        // 소개 수정하기 버튼
+        Button changePW = (Button) findViewById(R.id.change_btn);
+        changePW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ChangeInfoActivity.class);
                 intent.putExtra("user_id", user_id);
+                intent.putExtra("intro", tvNew.getText().toString()); // 사용자 입력 - 수정할 소개
                 startActivity(intent);
                 finish();
             }
         });
-
-        // 심부름 버튼 누를 시 이동
-        ImageButton simbu = (ImageButton) findViewById(R.id.go_sim);
-        simbu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SimhelpList.class);
-                intent.putExtra("user_id", user_id);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // 기부 버튼 누를 시 이동
-/*        ImageButton give = (ImageButton) findViewById(R.id.go_give);
-        give.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), .class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // 거래 버튼 누를 시 이동
-        ImageButton imageButton = (ImageButton) findViewById(R.id.go_garae);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), .class);
-                startActivity(intent);
-                finish();
-            }
-        });*/
-
     }
 
-    class Select_HelpList_Request extends AsyncTask<String, Integer, String> {
+    class Select_Info_Request extends AsyncTask<String, Integer, String> {
         String result = null;
         @Override
         protected String doInBackground(String... rurls) {
             try {
-                URL url = new URL("https://idox23.cafe24.com/user_result.php");
+                URL url = new URL("https://idox23.cafe24.com/info_result.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.connect();
 
@@ -125,21 +127,16 @@ public class Intro_List extends AppCompatActivity {
 
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
-                    String userid = Content.getString("name");
-                    String depart = Content.getString("dept");
+                    String userid = Content.getString("userid");
+                    String intro = Content.getString("intro");
 
-                    IntroListItem item = new IntroListItem();
-
-                    item.setName(userid);
-                    item.setDepart(depart);
-                    arrayList.add(item);
-
+                    if (userid.equals(user_id)){
+                        tvNow.setText(intro);
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            IntroListAdapter introListAdapter = new IntroListAdapter(Intro_List.this, arrayList);
-            listView.setAdapter(introListAdapter);
         }
     }
 }

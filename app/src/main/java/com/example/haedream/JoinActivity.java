@@ -18,7 +18,7 @@ public class JoinActivity extends AppCompatActivity {
     // 디버깅 위해 logcat 사용함. 사용방법: Log.d("태그명(prefix)", "보여질 값");
     // "태그명: 보여질 값" 형태로 Run, Logcat에 출력됨. Logcat 검색창에 태그명 검색하면 편함!
 
-    private String id, pw, phone, depart, birth;
+    private String id, pw, name, phone, depart, birth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 액티비티 시작시 처음으로 실행되는 생명주기
@@ -29,6 +29,7 @@ public class JoinActivity extends AppCompatActivity {
         Intent joinIntent = getIntent();
         id = joinIntent.getStringExtra("regi_id");
         pw = joinIntent.getStringExtra("regi_pw");
+        name = joinIntent.getStringExtra("regi_name");
         phone = joinIntent.getStringExtra("regi_phonenum");
         depart = joinIntent.getStringExtra("regi_depart");
         birth = joinIntent.getStringExtra("regi_birth");
@@ -48,9 +49,6 @@ public class JoinActivity extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                         Log.d("[TAG] 회원가입 디버깅", "(회원가입 성공) 중복 아이디 없음");
-
-                        Intent intent = new Intent(getApplicationContext(), Login.class);
-                        startActivity(intent);
                     }
 
                     else { // 회원가입에 실패한 경우
@@ -65,7 +63,7 @@ public class JoinActivity extends AppCompatActivity {
                 }
             }
         };
-        JoinRequest joinRequest = new JoinRequest(id, pw, phone, depart, birth, responseListener);
+        JoinRequest joinRequest = new JoinRequest(id, pw, name, phone, depart, birth, responseListener);
         RequestQueue queue = Volley.newRequestQueue(JoinActivity.this);
         queue.add(joinRequest);
 

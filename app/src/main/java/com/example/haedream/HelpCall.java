@@ -24,6 +24,7 @@ public class HelpCall extends AppCompatActivity {
     boolean checked = false;
     String str;
 
+
     /*void func(int count, int[] count_arr, ImageButton btn, ImageButton[] arr) {
         for(int i=0; i<6; i++) {
             if(count_arr[i]%2 == 1) {
@@ -57,6 +58,11 @@ public class HelpCall extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.helpcall);
+
+        String user_id;
+        Intent userintent = getIntent();
+        user_id = userintent.getStringExtra("user_id");
+        Log.d("[user_id 인텐트 받아옴]", user_id);
 
         View decorView = getWindow().getDecorView();
 
@@ -119,8 +125,8 @@ public class HelpCall extends AppCompatActivity {
         ImageButton anybtn = findViewById(R.id.anything);
         ImageButton backbtn = findViewById(R.id.backhome);
 
-        ImageButton[] btn_arr = {baebtn, movebtn, cleanbtn, homebtn, insectbtn, anybtn};
 
+        // 뒤로가기 버튼 클릭 시
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -383,7 +389,10 @@ public class HelpCall extends AppCompatActivity {
                     callintent.putExtra("location", location.getText().toString());
                     callintent.putExtra("point", spinner2.getSelectedItem().toString());
                     callintent.putExtra("period", spinner3.getSelectedItem().toString());
+                    callintent.putExtra("user_id", user_id);
+                    callintent.putExtra("accepted", "none");
                     startActivity(callintent);
+                    finish();
                 }
             }
         });

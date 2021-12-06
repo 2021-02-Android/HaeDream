@@ -45,13 +45,15 @@ public class LoginActivity extends AppCompatActivity {
                     boolean success = jsonObject.getBoolean("success"); // 연결 성공시 success = true
 
                     if (success) { // 로그인에 성공한 경우
-                        String userID = jsonObject.getString("userID");
+                        String name = jsonObject.getString("name");
                         // String userPW = jsonObject.getString("userPW"); // 해시 값 String으로 받아올 수 없어서 주석처리.
 
                         Toast.makeText(getApplicationContext(), "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show();
                         Log.d("[TAG] 로그인 디버깅", "(로그인 성공) 아이디, 비밀번호 일치");
 
                         Intent intent = new Intent(getApplicationContext(), MainSCR.class);
+                        intent.putExtra("user_id", user_id);
+
                         startActivity(intent);
                     }
                     else { // 로그인에 실패한 경우
