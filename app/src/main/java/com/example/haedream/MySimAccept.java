@@ -26,7 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MySimAccept extends AppCompatActivity {
     TextView name, location, info, point;
     CircleImageView iv_profile;
-    String it_userid;
+    String it_userid, it_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class MySimAccept extends AppCompatActivity {
         setContentView(R.layout.mysimaccepted);
 
         Intent intent = getIntent();
-        String it_name = intent.getStringExtra("name");
+        it_name = intent.getStringExtra("name");
         String it_location = intent.getStringExtra("location");
         String it_info = intent.getStringExtra("info");
         String it_point = intent.getStringExtra("point");
@@ -110,7 +110,7 @@ public class MySimAccept extends AppCompatActivity {
         @Override
         protected String doInBackground(String... rurls) {
             try {
-                URL url = new URL("https://idox23.cafe24.com/infojoin_result.php");
+                URL url = new URL("https://idox23.cafe24.com/infojoinuser_result.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.connect();
 
@@ -139,11 +139,10 @@ public class MySimAccept extends AppCompatActivity {
 
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
-                    String userid = Content.getString("userid");
                     String profile = Content.getString("profile");
-                    String accepted = Content.getString("accepted");
+                    String dbname = Content.getString("name");
 
-                    if(accepted.equals(it_userid)){
+                    if(it_name.equals(dbname)){
                         Glide.with(iv_profile).load("https://idox23.cafe24.com/"+profile).into(iv_profile);
                         Log.d("이미지 경로 : ", profile);
                     }
