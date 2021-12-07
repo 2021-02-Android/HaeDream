@@ -58,6 +58,30 @@ public class SimhelpList extends AppCompatActivity {
             }
         });
 
+        // 설정 버튼
+        ImageButton setButton = (ImageButton) findViewById(R.id.setting);
+        setButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // 마이페이지 버튼 누를 시 마이페이지 화면 이동
+        ImageButton myButton = (ImageButton) findViewById(R.id.mypage);
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         // 소개 버튼 클릭 시
         ImageButton go_intro = findViewById(R.id.go_intro);
         go_intro.setOnClickListener(new View.OnClickListener() {
