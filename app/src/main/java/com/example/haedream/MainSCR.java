@@ -66,7 +66,6 @@ public class MainSCR extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SimhelpList.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
-                finish();
             }
         });
 

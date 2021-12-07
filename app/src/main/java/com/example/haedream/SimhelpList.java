@@ -129,15 +129,30 @@ public class SimhelpList extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
-                Intent it = new Intent(getApplicationContext(), SimAccept.class);
-                it.putExtra("name", arrayList.get(a_position).getName());
-                it.putExtra("location", arrayList.get(a_position).getLocation());
-                it.putExtra("info", arrayList.get(a_position).getInfo());
-                it.putExtra("point", arrayList.get(a_position).getPoint());
-                it.putExtra("user_id", user_id);
-                Log.d("[user_id 인텐트 전달]", user_id);
-                startActivity(it);
-                finish();
+                // 로그인한 사용자가 요청한 심부름 클릭 시
+                if (arrayList.get(a_position).getUserid().equals(user_id)){
+                    Intent it = new Intent(getApplicationContext(), SimCheck.class);
+                    it.putExtra("name", arrayList.get(a_position).getName());
+                    it.putExtra("location", arrayList.get(a_position).getLocation());
+                    it.putExtra("info", arrayList.get(a_position).getInfo());
+                    it.putExtra("point", arrayList.get(a_position).getPoint());
+                    it.putExtra("user_id", user_id);
+                    Log.d("[user_id 인텐트 전달]", user_id);
+                    startActivity(it);
+                    finish();
+                }
+                // 다른 사람이 요청한 심부름 클릭 시
+                else {
+                    Intent it = new Intent(getApplicationContext(), SimAccept.class);
+                    it.putExtra("name", arrayList.get(a_position).getName());
+                    it.putExtra("location", arrayList.get(a_position).getLocation());
+                    it.putExtra("info", arrayList.get(a_position).getInfo());
+                    it.putExtra("point", arrayList.get(a_position).getPoint());
+                    it.putExtra("user_id", user_id);
+                    Log.d("[user_id 인텐트 전달]", user_id);
+                    startActivity(it);
+                    finish();
+                }
             }
         });
 
@@ -197,13 +212,14 @@ public class SimhelpList extends AppCompatActivity {
 
                     simhelpitem item = new simhelpitem();
 
-                    if(accepted.equals("none") && !userid.equals(user_id)){
+                    if(accepted.equals("none")){
                         item.setCategory(category);
                         item.setDetails(details);
                         item.setLocation(location);
                         item.setInfo(info);
                         item.setPoint(point);
                         item.setName(name);
+                        item.setUserid(userid);
                         arrayList.add(item);
                     }
                 }

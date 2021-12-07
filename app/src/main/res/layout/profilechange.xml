@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="select Image"
         android:textAllCaps="false"
-        android:onClick="clickBtn" />
+        android:id="@+id/selectbtn" />
 
         <ImageButton
             android:id="@+id/backbtn"
@@ -43,6 +43,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="이미지 변경"
-        android:onClick="clickUpload"/>
+        android:id="@+id/changebtn" />
 
 </LinearLayout>
