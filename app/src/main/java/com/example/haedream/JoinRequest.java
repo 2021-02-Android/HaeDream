@@ -12,7 +12,7 @@ public class JoinRequest extends StringRequest {
     final static private String URL = "http://idox23.cafe24.com/Join.php";
     private Map<String, String> map;
 
-    public JoinRequest(String userID, String userPW, String name, String tel, String dept, String birth, Response.Listener<String> listener) {
+    public JoinRequest(String userID, String userPW, String name, String tel, String dept, String birth, String profile, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
@@ -22,6 +22,7 @@ public class JoinRequest extends StringRequest {
         map.put("tel", tel);
         map.put("dept", dept);
         map.put("birth", birth);
+        map.put("profile", profile);
     }
 
     @Override

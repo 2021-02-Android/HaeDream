@@ -18,7 +18,7 @@ public class JoinActivity extends AppCompatActivity {
     // 디버깅 위해 logcat 사용함. 사용방법: Log.d("태그명(prefix)", "보여질 값");
     // "태그명: 보여질 값" 형태로 Run, Logcat에 출력됨. Logcat 검색창에 태그명 검색하면 편함!
 
-    private String id, pw, name, phone, depart, birth;
+    private String id, pw, name, phone, depart, birth, profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 액티비티 시작시 처음으로 실행되는 생명주기
@@ -33,6 +33,7 @@ public class JoinActivity extends AppCompatActivity {
         phone = joinIntent.getStringExtra("regi_phonenum");
         depart = joinIntent.getStringExtra("regi_depart");
         birth = joinIntent.getStringExtra("regi_birth");
+        profile = joinIntent.getStringExtra("profile");
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -63,7 +64,7 @@ public class JoinActivity extends AppCompatActivity {
                 }
             }
         };
-        JoinRequest joinRequest = new JoinRequest(id, pw, name, phone, depart, birth, responseListener);
+        JoinRequest joinRequest = new JoinRequest(id, pw, name, phone, depart, birth, profile, responseListener);
         RequestQueue queue = Volley.newRequestQueue(JoinActivity.this);
         queue.add(joinRequest);
 
