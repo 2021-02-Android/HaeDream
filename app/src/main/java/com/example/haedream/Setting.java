@@ -61,7 +61,7 @@ public class Setting extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                Intent intent = new Intent(getApplicationContext(), ProfileChange.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
             }

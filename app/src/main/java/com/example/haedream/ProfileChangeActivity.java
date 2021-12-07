@@ -24,8 +24,6 @@ public class ProfileChangeActivity extends AppCompatActivity {
         Intent callIntent = getIntent();
         imgPath = callIntent.getStringExtra("img");
         Log.d("imgPath 받아옴", imgPath);
-        name = "imgname";
-        msg = "imgmsg";
 
         Log.d("[TAG] 요청 디버깅", "사용자 입력값: " + imgPath + "/[INTENT]");
 
@@ -43,7 +41,7 @@ public class ProfileChangeActivity extends AppCompatActivity {
             }
         };
 
-        ProfileChangeRequest myPageRequest = new ProfileChangeRequest(name, msg, imgPath, responseListener);
+        ProfileChangeRequest myPageRequest = new ProfileChangeRequest(imgPath, responseListener);
         RequestQueue queue = Volley.newRequestQueue(ProfileChangeActivity.this);
         queue.add(myPageRequest);
 

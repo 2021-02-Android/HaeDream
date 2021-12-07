@@ -8,18 +8,25 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="defaul name 님 프로필 사진"
+        android:textSize="20dp"
+        android:id="@+id/tv_name" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="1">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="select Image"
-        android:textAllCaps="false"
-        android:id="@+id/selectbtn" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이미지 가져오기"
+            android:textAllCaps="false"
+            android:id="@+id/selectbtn" />
 
         <ImageButton
             android:id="@+id/backbtn"
@@ -32,17 +39,17 @@
             android:src="@drawable/back"
             android:layout_marginLeft="200dp"/>
 
- </LinearLayout>
-
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="200dp"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="이미지 변경"
+        android:text="이미지 변경하기"
         android:id="@+id/changebtn" />
 
 </LinearLayout>
