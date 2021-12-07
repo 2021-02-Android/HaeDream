@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,9 +25,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MyPage extends AppCompatActivity {
     String user_id;
     TextView tvname, tvdept, tvuserid, tvbirth, tvinfo;
+    CircleImageView iv_profile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class MyPage extends AppCompatActivity {
         tvuserid = findViewById(R.id.user_id);
         tvbirth = findViewById(R.id.user_birth);
         tvinfo = findViewById(R.id.user_info);
+        iv_profile = findViewById(R.id.iv);
 
         new MyPage.Select_MyPage_Request().execute();
 
@@ -116,12 +122,14 @@ public class MyPage extends AppCompatActivity {
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
                     String userid = Content.getString("userid");
+                    String profile = Content.getString("profile");
                     String name = Content.getString("name");
                     String dept = Content.getString("dept");
                     String birth = Content.getString("birth");
                     String intro = Content.getString("intro");
 
                     if (userid.equals(user_id)){
+                        Glide.with(iv_profile).load("https://idox23.cafe24.com/"+profile).into(iv_profile);
                         tvname.setText(name);
                         tvdept.setText(dept);
                         tvuserid.setText(userid);

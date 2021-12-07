@@ -38,7 +38,6 @@ public class MainSCR extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPage.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -50,7 +49,6 @@ public class MainSCR extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Setting.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -62,7 +60,6 @@ public class MainSCR extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyPage.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -85,7 +82,6 @@ public class MainSCR extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Intro_List.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
-                finish();
             }
         });
     }

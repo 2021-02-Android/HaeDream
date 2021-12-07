@@ -60,6 +60,7 @@ public class Join extends AppCompatActivity {
                 String snum = regi_second_num.getText().toString();
                 String depart = spinner.getSelectedItem().toString();
                 String birth = regi_birth.getText().toString();
+                String profile = "uploads/my.png";
 
                 boolean fnumIsNum =  fnum.matches("-?\\d*(\\.\\d+)?");
                 boolean snumIsNum =  snum.matches("-?\\d+(\\.\\d+)?");
@@ -95,6 +96,7 @@ public class Join extends AppCompatActivity {
                     joinintent.putExtra("regi_phonenum", "010" + fnum + snum);
                     joinintent.putExtra("regi_depart", depart);
                     joinintent.putExtra("regi_birth", birth);
+                    joinintent.putExtra("profile", profile);
                     startActivity(joinintent); // 필수. 안넣으면 인텐트 안보내짐!
                     finish();
                 }
