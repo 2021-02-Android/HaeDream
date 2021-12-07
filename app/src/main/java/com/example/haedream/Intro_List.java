@@ -12,6 +12,8 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,11 +24,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Intro_List extends AppCompatActivity {
     ListView listView;
     ArrayList<IntroListItem> arrayList;
     String user_id;
     String username, otherusername;
+    CircleImageView iv_profile;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +53,7 @@ public class Intro_List extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
                 Intent it = new Intent(getApplicationContext(), IntroInfo.class);
+                it.putExtra("profile",arrayList.get(a_position).getProfile());
                 it.putExtra("name", arrayList.get(a_position).getName());
                 it.putExtra("depart", arrayList.get(a_position).getDepart());
                 it.putExtra("intro", arrayList.get(a_position).getIntro());
@@ -120,6 +127,7 @@ public class Intro_List extends AppCompatActivity {
 
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
+                    String profile = Content.getString("profile");
                     String userid = Content.getString("userid");
                     String name = Content.getString("name");
                     String depart = Content.getString("dept");
@@ -136,7 +144,12 @@ public class Intro_List extends AppCompatActivity {
                         item.setName(name);
                         item.setDepart(depart);
                         item.setIntro(intro);
+                        item.setProfile(profile);
                         arrayList.add(item);
+
+                   //     Glide.with(iv_profile).load("https://idox23.cafe24.com/"+profile).into(iv_profile);
+                  //      Log.d("이미지 경로 : ", profile);
+
                     }
 
                     // 로그인한 사용자 이름 username 변수에 넣음

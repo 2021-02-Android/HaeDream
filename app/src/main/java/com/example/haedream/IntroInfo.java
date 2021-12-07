@@ -11,6 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /*
 *  사진 image, 이름 name, 학과 depart, 소개 intro
 *  뒤로가기 버튼 back, 대화하기 버튼 startChat
@@ -19,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 // 소개해드림에서 사용 자아이템 클릭시 사용자 정보 화면 나타내줌
 public class IntroInfo extends AppCompatActivity {
     TextView name, depart, intro;
+    CircleImageView iv_profile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +31,12 @@ public class IntroInfo extends AppCompatActivity {
         setContentView(R.layout.chat_check);
 
         Intent intent = getIntent();
+
+        String it_profile = intent.getStringExtra("profile");
+
+        iv_profile = findViewById(R.id.iv);
+        Glide.with(iv_profile).load("https://idox23.cafe24.com/"+it_profile).into(iv_profile);
+
         String it_name = intent.getStringExtra("name");
         Log.d("[IntroInfo it_name 인텐트 받음]", it_name); // 상대 이름
 
@@ -46,6 +57,7 @@ public class IntroInfo extends AppCompatActivity {
         name = findViewById(R.id.name);
         depart = findViewById(R.id.depart);
         intro = findViewById(R.id.intro);
+
 
         name.setText(it_name);
         depart.setText(it_depart);

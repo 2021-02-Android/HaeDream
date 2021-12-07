@@ -5,7 +5,7 @@ public class IntroListItem {
     // name : 아이템에 나타내는 사람의 이름
     // userid : 시스템 사용자 아이디
     // username : 시스템 사용자 이름
-    String name, depart, userid, intro, other_id, username;
+    String name, depart, userid, intro, other_id, username, profile;
 
     public String getUsername() { return username;  }
 
@@ -34,4 +34,7 @@ public class IntroListItem {
     public String getOther_id() {
         return other_id;
     }
+
+    public String getProfile() {return profile;}
+    public void setProfile(String profile) {this.profile = profile;}
 }
