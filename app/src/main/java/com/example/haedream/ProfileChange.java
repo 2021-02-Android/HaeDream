@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,24 +27,31 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.content.CursorLoader;
 
+import com.bumptech.glide.Glide;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ProfileChange extends AppCompatActivity {
-    String path;
+    String user_id;
     ImageView imgview;
+    TextView tv_name;
 
     public String uploadFilePath;
     public String uploadFileName;
     private int REQ_CODE_PICK_PICTURE = 1;
     // 파일을 업로드 하기 위한 변수 선언
     private int serverResponseCode = 0;
-
- //   imgview = findViewById(R.id.iv);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,13 @@ public class ProfileChange extends AppCompatActivity {
         Button selectbtn, changebtn;
         ImageButton backbtn;
         imgview = findViewById(R.id.iv);
+        tv_name = findViewById(R.id.tv_name);
+
+        Intent userintent = getIntent();
+        user_id = userintent.getStringExtra("user_id");
+        Log.d("[TAG] 로그인 아이디 인텐트 전달", user_id);
+
+        tv_name.setText(user_id + "님 프로필 사진");
 
         // 동적퍼미션 작업
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
@@ -63,22 +78,18 @@ public class ProfileChange extends AppCompatActivity {
             }
         }
 
+        new ProfileChange.Select_ProfileChange_Request().execute();
+
         selectbtn = findViewById(R.id.selectbtn);
         selectbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             /*   Intent intent= new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent,10);*/
-
-
                 Intent i = new Intent(Intent.ACTION_PICK);
                 i.setType(MediaStore.Images.Media.CONTENT_TYPE);
                 i.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // images on the SD card.
 
                 // 결과를 리턴하는 Activity 호출
                 startActivityForResult(i, REQ_CODE_PICK_PICTURE);
-
             }
         });
 
@@ -289,86 +300,49 @@ public class ProfileChange extends AppCompatActivity {
 
     }
 
-  /*  @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.selectbtn:
-                Intent i = new Intent(Intent.ACTION_PICK);
-                i.setType(MediaStore.Images.Media.CONTENT_TYPE);
-                i.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // images on the SD card.
+    class Select_ProfileChange_Request extends AsyncTask<String, Integer, String> {
+        String result = null;
+        @Override
+        protected String doInBackground(String... rurls) {
+            try {
+                URL url = new URL("https://idox23.cafe24.com/profile_result.php");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.connect();
 
-                // 결과를 리턴하는 Activity 호출
-                startActivityForResult(i, REQ_CODE_PICK_PICTURE);
-                break;
-
-            case R.id.changebtn:
-                if (uploadFilePath != null) {
-                    UploadImageToServer uploadimagetoserver = new UploadImageToServer();
-                    uploadimagetoserver.execute("http://idox23.cafe24.com/ImageUploadToServer.php");
-                } else {
-                    Toast.makeText(ProfileChange.this, "You didn't insert any image", Toast.LENGTH_SHORT).show();
-                }
-                break;
-        }
-    }*/
-
-
-
-/*
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch(requestCode){
-            case 10:
-                if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(this, "외부 메모리 읽기/쓰기 사용 가능", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(this, "외부 메모리 읽기/쓰기 제한", Toast.LENGTH_SHORT).show();
-                }
-                break;
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode){
-            case 10:
-                if(resultCode==RESULT_OK){
-                    // 선택한 사진의 경로(Uri)객체 얻어오기
-                    Uri uri= data.getData();
-                    if(uri!=null){
-                        imgview.setImageURI(uri);
-                        path = getRealPathFromUri(uri);
-                        Log.d("이미지경로 path 변수 ", path);
-                        Log.d("이미지경로인텐트 보냄", uri.toString() + "\n" + path);
-                        new AlertDialog.Builder(this).setMessage(uri.toString()+"\n"+path).create().show();
-
-                        Intent intent = new Intent(getApplicationContext(), ProfileChangeActivity.class);
-                        intent.putExtra("img", path);
-                        Log.d("이미지경로인텐트 보냄", path);
-                        startActivity(intent);
-
+                if(conn.getResponseCode()==HttpURLConnection.HTTP_OK) {
+                    InputStreamReader inputStreamReader = new InputStreamReader(conn.getInputStream());
+                    BufferedReader reader = new BufferedReader(inputStreamReader);
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line = "";
+                    while ((line = reader.readLine()) != null) {
+                        stringBuilder.append(line);
                     }
+                    result = stringBuilder.toString();
                 } else {
-                    Toast.makeText(this, "이미지 선택을 하지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    result = "error";
                 }
-                break;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+        protected void onPostExecute(String _result) {
+            try {
+                JSONObject root = new JSONObject(_result);
+                JSONArray results = new JSONArray(root.getString("results"));
+
+                for (int index = 0; index < results.length(); index++) {
+                    JSONObject Content = results.getJSONObject(index);
+                    String imgPath = Content.getString("imgPath");
+                    Glide.with(imgview).load("https://idox23.cafe24.com/"+imgPath).into(imgview);
+                    Log.d("이미지 경로 : ", imgPath);
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
-
-    // Uri -- > 절대경로로 바꿔서 리턴시켜주는 메소드
-    String getRealPathFromUri(Uri uri) {
-        String[] proj= {MediaStore.Images.Media.DATA};
-        CursorLoader loader= new CursorLoader(this, uri, proj, null, null, null);
-        Cursor cursor= loader.loadInBackground();
-        int column_index= cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        String result= cursor.getString(column_index);
-        cursor.close();
-        return  result;
-    }*/
 
 }
