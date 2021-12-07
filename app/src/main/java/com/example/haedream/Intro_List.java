@@ -39,7 +39,7 @@ public class Intro_List extends AppCompatActivity {
         listView = findViewById(R.id.intro_listview);
         arrayList = new ArrayList<>();
 
-        new Intro_List.Select_HelpList_Request().execute();
+        new Select_HelpList_Request().execute();
 
         // 리스트뷰에서 아이템 클릭 시
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -50,6 +50,8 @@ public class Intro_List extends AppCompatActivity {
                 it.putExtra("depart", arrayList.get(a_position).getDepart());
                 it.putExtra("intro", arrayList.get(a_position).getIntro());
                 it.putExtra("other_id", arrayList.get(a_position).getOther_id());
+                it.putExtra("user_name", arrayList.get(a_position).getUser_name());
+                Log.d("[user_name 인텐트 전달]", arrayList.get(a_position).getUser_name());
                 it.putExtra("user_id", user_id);
                 Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(it);
@@ -118,12 +120,17 @@ public class Intro_List extends AppCompatActivity {
 
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
+                    //String user_name = Content.getString("user_name");
                     String name = Content.getString("name");
                     String depart = Content.getString("dept");
                     String intro = Content.getString("intro");
                     String other_id = Content.getString("userid");
 
                     IntroListItem item = new IntroListItem();
+
+                    //if (user_name.equals(user_id)){
+                    //    item.setUser_name(user_name);
+                    //}
 
                     item.setOther_id(other_id);
                     item.setName(name);

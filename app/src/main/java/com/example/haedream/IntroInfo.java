@@ -29,11 +29,14 @@ public class IntroInfo extends AppCompatActivity {
         String it_depart = intent.getStringExtra("depart");
         String it_intro = intent.getStringExtra("intro");
 
+        String user_name = intent.getStringExtra("user_name");
+        Log.d("[IntroInfo user_name 인텐트 받음]", user_name);
+
         String other_id = intent.getStringExtra("other_id");
-        Log.d("[other_id 인텐트 받음]", other_id);
+        Log.d("[IntroInfo other_id 인텐트 받음]", other_id);
 
         String it_userid = intent.getStringExtra("user_id");
-        Log.d("[user_id 인텐트 받아옴]", it_userid);
+        Log.d("[IntroInfo user_id 인텐트 받아옴]", it_userid);
 
         name = findViewById(R.id.name);
         depart = findViewById(R.id.depart);
@@ -61,15 +64,15 @@ public class IntroInfo extends AppCompatActivity {
         // 대화하기
         Button chat = findViewById(R.id.startChat);
         chat.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(getApplicationContext(), ChatActivity.class);
                 it.putExtra("name", name.getText().toString());
-                it.putExtra("sysUser",it_userid); // 현재 사용자
-                it.putExtra("other",other_id);      // 상대방 아이디
-                Log.d("[user_id 인텐트 전달]", it_userid);
-                Log.d("[other_id 인텐트 전달]", other_id);
+                it.putExtra("user_id",it_userid); // 현재 사용자
+                it.putExtra("other_id",other_id); // 상대방 아이디
+                it.putExtra("user_name",user_name); // 사용자 이름
+                Log.d("[info에서 chat으로 user_id 인텐트 전달]", it_userid);
+                Log.d("[info에서 chat으로 other_id 인텐트 전달]", other_id);
                 startActivity(it);
                 finish();
             }
