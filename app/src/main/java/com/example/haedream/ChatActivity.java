@@ -33,15 +33,14 @@ import java.util.Calendar;
 public class ChatActivity extends AppCompatActivity {
     String user_id; // 시스템 사용자 id
     String other_id; // 상대방 id
-    String other_name, user_name;
+    String otherusername, username;
 
-    private String CHAT_NAME;   // 채팅방 이름
+    public static Context mContext;
 
     private ListView listView; // 채팅 화면
     private EditText chat_edit; // 메세지 입력
-    //private Button chat_send;   // 전송 버튼
     private TextView textView;  // 채팅방 맨 위 글자(상대 이름 표시)
-    private ImageView imageView; // 채팅방 맨 위 상대 이미지 띄우기
+    private ImageView imageView; // 채팅방 상단 바 상대 이미지 띄우기
 
     ArrayList<MessageItem> messageItems = new ArrayList<>();
     ChatAdapter adapter;
@@ -64,31 +63,39 @@ public class ChatActivity extends AppCompatActivity {
         other_id = user_intent.getStringExtra("other_id");
         Log.d("[ChatActivity other_id 인텐트 받아옴]", other_id);
 
+
         // 상대 이름 받음
         Intent info = getIntent();
-        other_name = info.getStringExtra("other_user_name");
-        Log.d("[ChatActivity name 인텐트 받아옴]", other_name);
+        otherusername = info.getStringExtra("name");
+        Log.d("[ChatActivity otherusername 인텐트 받아옴]", otherusername);
 
-        user_name = info.getStringExtra("user_name");
-        Log.d("[ChatActivity user_name 인텐트 받아옴]", user_name);
+        // 사용자 이름
+        username = info.getStringExtra("username");
+        Log.d("[ChatActivity user_name 인텐트 받아옴]", username);
 
         // 상단바 채팅방 이름 상대이름으로
         textView = (TextView) findViewById(R.id.othername);
-        textView.setText(other_name);
+        textView.setText(otherusername);
 
         // imageView = (ImageView) findViewById(R.id.otherimage); // 이미지
         // imageView.setText(image);
         // CHAT_NAME = name;
 
+/*
+        Bundle bundle = new Bundle();
+        bundle.putString("username", username); // 시스템 사용자
+        Intent in = new Intent(getApplicationContext(), ChatAdapter.class);
+        in.putExtras(bundle);
+*/
+
         listView = (ListView) findViewById(R.id.listview);
         chat_edit = (EditText) findViewById(R.id.text);
 
         adapter = new ChatAdapter(messageItems, getLayoutInflater());
-        // ChatAdapter로 사용자 이름 넘겨줌
-        adapter.user_name = user_name;
         listView.setAdapter(adapter);
 
         //Firebase DB 관리 객체, chat 노드 참조 객체 얻어오기
+        // 수정하기
         firebaseDatabase= FirebaseDatabase.getInstance();
         databaseReference= firebaseDatabase.getReference("chat");
 
@@ -145,7 +152,10 @@ public class ChatActivity extends AppCompatActivity {
 
                 //firebase DB에 저장할 값(MessageItem객체) 설정
                 // MessageItem messageItem= new MessageItem(name ,text, time, pofile);
-                MessageItem messageItem= new MessageItem(other_name, message, time, user_id, other_id, user_name);
+                MessageItem messageItem = new MessageItem(username, message, time, user_id, other_id);
+                MessageItem mi = new MessageItem();
+                mi.setUsername(username);
+                //ChatCheck chatCheck = new ChatCheck(username);
                 // 위처럼 해버리면 매번 메시지 보낼때마다 user_id, other_id 다 들어감...
 
                 //'chat'노드에 내용 저장
@@ -157,6 +167,7 @@ public class ChatActivity extends AppCompatActivity {
                 //소프트키패드를 안보이도록
                 InputMethodManager imm=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+
             }
         });
 
@@ -167,12 +178,11 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Intro_List.class);
                 intent.putExtra("user_id", user_id);
-                intent.putExtra("user_name", user_name);
+                intent.putExtra("user_name", username);
                 startActivity(intent);
                 finish();
             }
         });
-
 
     }
 

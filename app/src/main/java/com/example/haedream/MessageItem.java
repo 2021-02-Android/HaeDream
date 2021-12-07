@@ -11,15 +11,23 @@ public class MessageItem {
     private String time;
     private String user_id;
     private String other_id;
-    private String user_name;
+    private String username;
 
-    public MessageItem(String name, String text, String time, String user_id, String other_id, String user_name){
+    public MessageItem(String name, String text, String time, String user_id, String other_id){
         this.name = name;
         this.text = text;
         this.time = time;
         this.user_id = user_id;
         this.other_id = other_id;
-        this.user_name = user_name;
+    }
+
+    public MessageItem(String name, String text, String time, String user_id, String other_id, String username){
+        this.name = name;
+        this.text = text;
+        this.time = time;
+        this.user_id = user_id;
+        this.other_id = other_id;
+        this.username = username;
     }
 
 /*
@@ -42,9 +50,9 @@ public class MessageItem {
 
     // getter setter
 
-    public void setUser_name(String user_name) { this.user_name = user_name;    }
+    public void setUsername(String username) { this.username = username;    }
 
-    public String getUser_name() { return user_name;    }
+    public String getUsername() { return username;    }
 
     public void setOther_id(String other_id) { this.other_id = other_id;  }
 

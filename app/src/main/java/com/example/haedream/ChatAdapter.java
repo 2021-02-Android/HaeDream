@@ -1,5 +1,9 @@
 package com.example.haedream;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +15,10 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import kotlin.CharCodeKt;
 
 public class ChatAdapter extends BaseAdapter {
-    String user_name; // 사용자 이름 받아옴
+    // String username; // 사용자 이름 받아옴
     ArrayList<MessageItem> messageItems;
     LayoutInflater layoutInflater;
 
@@ -46,11 +51,18 @@ public class ChatAdapter extends BaseAdapter {
         //재활용할 뷰는 사용하지 않음
         View itemView = null;
 
+        // 사용자 이름
+
         //메세지가 내 메세지인지??
-        if(item.getName().equals(item.getUser_name())){
+        // getName = 메세지 작성자 이름 o
+        // username = 시스템 사용자 이름
+
+        if(item.getName().equals(G.UserName)){
             itemView= layoutInflater.inflate(R.layout.my_msgbox,viewGroup,false);
+            System.out.println("[ChatAdapter username] " + G.UserName);
         }else{
             itemView= layoutInflater.inflate(R.layout.other_msgbox,viewGroup,false);
+            System.out.println("[ChatAdapter username] " + G.UserName);
         }
 
 

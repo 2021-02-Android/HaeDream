@@ -14,7 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 /*
 *  사진 image, 이름 name, 학과 depart, 소개 intro
 *  뒤로가기 버튼 back, 대화하기 버튼 startChat
-* */
+*/
+
 // 소개해드림에서 사용 자아이템 클릭시 사용자 정보 화면 나타내줌
 public class IntroInfo extends AppCompatActivity {
     TextView name, depart, intro;
@@ -26,20 +27,21 @@ public class IntroInfo extends AppCompatActivity {
 
         Intent intent = getIntent();
         String it_name = intent.getStringExtra("name");
+        Log.d("[IntroInfo it_name 인텐트 받음]", it_name); // 상대 이름
+
         String it_depart = intent.getStringExtra("depart");
         String it_intro = intent.getStringExtra("intro");
 
-        String user_name = intent.getStringExtra("user_name");
-        Log.d("[IntroInfo user_name 인텐트 받음]", user_name);
+        String username = intent.getStringExtra("username");
+        Log.d("[IntroInfo username 인텐트 받음]", username); // 시스템 사용자
+
+        G.UserName = username;
 
         String other_id = intent.getStringExtra("other_id");
-        Log.d("[IntroInfo other_id 인텐트 받음]", other_id);
+        Log.d("[IntroInfo other_id 인텐트 받음]", other_id); // 상대 아이디
 
-        String otheruser_name = intent.getStringExtra("other_user_name");
-        Log.d("[IntroInfo other_user_name 인텐트 받음]", otheruser_name);
-
-        String it_userid = intent.getStringExtra("user_id");
-        Log.d("[IntroInfo user_id 인텐트 받아옴]", it_userid);
+        String user_id = intent.getStringExtra("user_id");
+        Log.d("[IntroInfo user_id 인텐트 받아옴]", user_id); // 시스템 아이디
 
         name = findViewById(R.id.name);
         depart = findViewById(R.id.depart);
@@ -56,13 +58,12 @@ public class IntroInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Intro_List.class);
-                intent.putExtra("user_id", it_userid);
-                Log.d("[user_id 인텐트 전달]", it_userid);
+                intent.putExtra("user_id", user_id);
+                Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(intent);
                 finish();
             }
         });
-
 
         // 대화하기
         Button chat = findViewById(R.id.startChat);
@@ -70,12 +71,11 @@ public class IntroInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(getApplicationContext(), ChatActivity.class);
-                it.putExtra("name", name.getText().toString());
-                it.putExtra("user_id",it_userid); // 현재 사용자
+                it.putExtra("name", name.getText().toString());// 상대방 이름
+                it.putExtra("user_id",user_id); // 현재 사용자
                 it.putExtra("other_id",other_id); // 상대방 아이디
-                it.putExtra("other_user_name", otheruser_name); // 상대방 이름
-                it.putExtra("user_name",user_name); // 사용자 이름
-                Log.d("[info에서 chat으로 user_id 인텐트 전달]", it_userid);
+                it.putExtra("username",username); // 사용자 이름
+                Log.d("[info에서 chat으로 user_id 인텐트 전달]", user_id);
                 Log.d("[info에서 chat으로 other_id 인텐트 전달]", other_id);
                 startActivity(it);
                 finish();
