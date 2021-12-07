@@ -5,11 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 인터넷 권한 선언-->
 
-    <!-- application 태그 안에 name 태그 이거 한줄 안넣어서 5시간 삽질함
-         GlobalApplication 에서 카카오 API 사용할 수 있게 init 해주는 거라서 필수 -->
-
     <application
-        android:name=".GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,7 +16,7 @@
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_native_key" />
+            android:value="@string/kakao_app_key" />
 
         <activity
             android:name=".MainActivity"
@@ -76,21 +72,8 @@
         <activity android:name=".HelpCallActivity" />
         <activity android:name=".Setting" />
         <activity android:name=".MyPage" />
-        <activity android:name=".KakaoLogin" />
-
-        <activity
-            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Redirect URI: "kakao{NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
-                    android:scheme="@string/kakao_native_key" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".IntroInfo"/>
+        <activity android:name=".ChatActivity"/>
     </application>
 
 </manifest>
