@@ -146,10 +146,6 @@ public class Intro_List extends AppCompatActivity {
                         item.setIntro(intro);
                         item.setProfile(profile);
                         arrayList.add(item);
-
-                   //     Glide.with(iv_profile).load("https://idox23.cafe24.com/"+profile).into(iv_profile);
-                  //      Log.d("이미지 경로 : ", profile);
-
                     }
 
                     // 로그인한 사용자 이름 username 변수에 넣음

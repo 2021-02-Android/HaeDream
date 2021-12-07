@@ -35,6 +35,7 @@ public class IntroListItem {
         return other_id;
     }
 
-    public String getProfile() {return profile;}
-    public void setProfile(String profile) {this.profile = profile;}
+    public String getProfile() { return profile; }
+
+    public void setProfile(String profile) { this.profile = profile; }
 }
