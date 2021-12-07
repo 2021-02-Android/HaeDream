@@ -4,7 +4,7 @@
     package="com.example.haedream">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 인터넷 권한 선언-->
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -76,6 +76,9 @@
         <activity android:name=".ChatActivity"/>
         <activity android:name=".ProfileChange" />
         <activity android:name=".ProfileChangeActivity" />
+        <activity android:name=".SimCheck" />
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
 
 </manifest>
