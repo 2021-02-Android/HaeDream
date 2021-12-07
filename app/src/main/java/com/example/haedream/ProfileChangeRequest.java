@@ -14,12 +14,10 @@ public class ProfileChangeRequest extends StringRequest {
     private Map<String, String> map;
 
 
-    public ProfileChangeRequest(String name, String msg, String imgPath, Response.Listener<String> listener) {
+    public ProfileChangeRequest(String imgPath, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
-        map.put("name", name);
-        map.put("msg", msg);
         map.put("img", imgPath);
     }
 
