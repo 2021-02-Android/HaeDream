@@ -19,7 +19,7 @@
         android:id="@+id/image"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/transparent_logo"/>
 
     <LinearLayout
         android:layout_marginTop="10dp"

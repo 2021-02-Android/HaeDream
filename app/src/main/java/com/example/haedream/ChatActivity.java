@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -35,6 +36,8 @@ public class ChatActivity extends AppCompatActivity {
     String other_id; // 상대방 id
     String otherusername, username;
 
+    private String CHAT_NAME;
+
     public static Context mContext;
 
     private ListView listView; // 채팅 화면
@@ -45,8 +48,8 @@ public class ChatActivity extends AppCompatActivity {
     ArrayList<MessageItem> messageItems = new ArrayList<>();
     ChatAdapter adapter;
 
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     // xml=@id : 보내기 버튼 send, 입력 text, view 화면 listview
     @Override
@@ -77,16 +80,16 @@ public class ChatActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.othername);
         textView.setText(otherusername);
 
-        // imageView = (ImageView) findViewById(R.id.otherimage); // 이미지
-        // imageView.setText(image);
+        // db에 저장될 채팅방 이름
+        //CHAT_NAME = user_id + other_id;
+        //System.out.println("Chat name : " + CHAT_NAME );
+
+        //imageView = (ImageView) findViewById(R.id.otherimage); // 이미지
+        //imageView.setText(image);
         // CHAT_NAME = name;
 
-/*
-        Bundle bundle = new Bundle();
-        bundle.putString("username", username); // 시스템 사용자
-        Intent in = new Intent(getApplicationContext(), ChatAdapter.class);
-        in.putExtras(bundle);
-*/
+        // 채팅 방 입장
+        //openChat(CHAT_NAME);
 
         listView = (ListView) findViewById(R.id.listview);
         chat_edit = (EditText) findViewById(R.id.text);
@@ -95,9 +98,7 @@ public class ChatActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         //Firebase DB 관리 객체, chat 노드 참조 객체 얻어오기
-        // 수정하기
-        firebaseDatabase= FirebaseDatabase.getInstance();
-        databaseReference= firebaseDatabase.getReference("chat");
+        databaseReference = firebaseDatabase.getReference("Chat").push();
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -150,7 +151,7 @@ public class ChatActivity extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 String time = calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE);
 
-                //firebase DB에 저장할 값(MessageItem객체) 설정
+                // firebase DB에 저장할 값(MessageItem객체) 설정
                 // MessageItem messageItem= new MessageItem(name ,text, time, pofile);
                 MessageItem messageItem = new MessageItem(username, message, time, user_id, other_id);
                 MessageItem mi = new MessageItem();
@@ -185,5 +186,6 @@ public class ChatActivity extends AppCompatActivity {
         });
 
     }
+
 
 }
