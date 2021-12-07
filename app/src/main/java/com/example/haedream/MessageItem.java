@@ -13,10 +13,13 @@ public class MessageItem {
     private String other_id;
     private String username;
 
-    public MessageItem(String name, String text, String time, String user_id, String other_id){
+    public MessageItem(String name, String text, String time){
         this.name = name;
         this.text = text;
         this.time = time;
+    }
+
+    public MessageItem(String user_id, String other_id){
         this.user_id = user_id;
         this.other_id = other_id;
     }
