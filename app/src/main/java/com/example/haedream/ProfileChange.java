@@ -80,6 +80,8 @@ public class ProfileChange extends AppCompatActivity {
 
         new ProfileChange.Select_ProfileChange_Request().execute();
 
+
+        // 이미지 선택 버튼 클릭 시
         selectbtn = findViewById(R.id.selectbtn);
         selectbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,31 +89,34 @@ public class ProfileChange extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_PICK);
                 i.setType(MediaStore.Images.Media.CONTENT_TYPE);
                 i.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // images on the SD card.
-
                 // 결과를 리턴하는 Activity 호출
                 startActivityForResult(i, REQ_CODE_PICK_PICTURE);
             }
         });
 
+        // 이미지 변경하기 버튼 클릭 시
         changebtn = findViewById(R.id.changebtn);
         changebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (uploadFilePath != null) {
+                    // 서버에 이미지 올리고 디비에 경로 저장
                     UploadImageToServer uploadimagetoserver = new UploadImageToServer();
                     uploadimagetoserver.execute("http://idox23.cafe24.com/ImageUploadToServer.php");
                 } else {
                     Toast.makeText(ProfileChange.this, "You didn't insert any image", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
+        // 뒤로가기 버튼 클릭 시
         backbtn = findViewById(R.id.backbtn);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainSCR.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
                 finish();
             }
         });
@@ -131,7 +136,7 @@ public class ProfileChange extends AppCompatActivity {
                 uploadFilePath = path;
                 uploadFileName = name;
 
-                  Log.d("[onActivityResult] uploadFilePath:", uploadFilePath + ", uploadFileName:" + uploadFileName);
+                Log.d("[onActivityResult] uploadFilePath:", uploadFilePath + ", uploadFileName:" + uploadFileName);
 
                 Bitmap bit = BitmapFactory.decodeFile(path);
                 imgview.setImageBitmap(bit);
@@ -221,11 +226,12 @@ public class ProfileChange extends AppCompatActivity {
 
                     dos = new DataOutputStream(conn.getOutputStream());
 
-                    // 사용자 이름으로 폴더를 생성하기 위해 사용자 이름을 서버로 전송한다.
+                    // 사용자 이름으로 폴더를 생성하기 위해 사용자 이름을 서버로 전송한다. << 폴더생성안함
                     dos.writeBytes(twoHyphens + boundary + lineEnd);
                     dos.writeBytes("Content-Disposition: form-data; name=\"data1\"" + lineEnd);
                     dos.writeBytes(lineEnd);
-                    dos.writeBytes("newImage");
+                    // data1에 user_id(인텐트로 받아온 로그인 사용자 아이디) 넣어줌
+                    dos.writeBytes(user_id);
                     dos.writeBytes(lineEnd);
 
                     // 이미지 전송
@@ -334,10 +340,14 @@ public class ProfileChange extends AppCompatActivity {
 
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
-                    String imgPath = Content.getString("imgPath");
-                    Glide.with(imgview).load("https://idox23.cafe24.com/"+imgPath).into(imgview);
-                    Log.d("이미지 경로 : ", imgPath);
+                    String userid = Content.getString("userID");
+                    String imgPath = Content.getString("profile");
 
+                    if(userid.equals(user_id)){
+                        // 이미지뷰에 서버에서 불러온 이미지 띄움
+                        Glide.with(imgview).load("https://idox23.cafe24.com/"+imgPath).into(imgview);
+                        Log.d("이미지 경로 : ", imgPath);
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

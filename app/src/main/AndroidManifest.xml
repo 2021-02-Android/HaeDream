@@ -93,7 +93,6 @@
         <activity android:name=".IntroInfo"/>
         <activity android:name=".ChatActivity"/>
         <activity android:name=".ProfileChange" />
-        <activity android:name=".ProfileChangeActivity" />
         <activity android:name=".SimCheck" />
         <activity android:name=".CheckPWChange" />
         <activity android:name=".ChangePW" />
