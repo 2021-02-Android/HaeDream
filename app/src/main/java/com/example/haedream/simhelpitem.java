@@ -3,7 +3,7 @@ package com.example.haedream;
 // 아이템을 정의하는 클래스
 // 아이템을 구성할 요소 텍스트 4개와 이미지1개, 5개의 변수 필요
 public class simhelpitem {
-    String category, details, info, location, point, period, name;
+    String category, details, info, location, point, period, name, userid;
 
     public String getCategory() {
         return category;
@@ -54,4 +54,8 @@ public class simhelpitem {
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
+
+    public String getUserid() { return userid; }
+
+    public void setUserid(String userid) { this.userid = userid; }
 }

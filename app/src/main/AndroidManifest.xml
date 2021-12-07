@@ -74,6 +74,8 @@
         <activity android:name=".MyPage" />
         <activity android:name=".IntroInfo"/>
         <activity android:name=".ChatActivity"/>
+        <activity android:name=".ProfileChange" />
+        <activity android:name=".ProfileChangeActivity" />
     </application>
 
 </manifest>
