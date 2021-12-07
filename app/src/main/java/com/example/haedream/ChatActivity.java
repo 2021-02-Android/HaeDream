@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,16 +30,13 @@ import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class ChatActivity extends AppCompatActivity {
     String user_id; // 시스템 사용자 id
     String other_id; // 상대방 id
     String otherusername, username;
-
-    private String CHAT_NAME;
-
-    public static Context mContext;
 
     private ListView listView; // 채팅 화면
     private EditText chat_edit; // 메세지 입력
@@ -80,13 +78,14 @@ public class ChatActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.othername);
         textView.setText(otherusername);
 
-        // db에 저장될 채팅방 이름
-        //CHAT_NAME = user_id + other_id;
-        //System.out.println("Chat name : " + CHAT_NAME );
+        // DB에 저장될 채팅방 이름
 
-        //imageView = (ImageView) findViewById(R.id.otherimage); // 이미지
-        //imageView.setText(image);
-        // CHAT_NAME = name;
+        String chat_name = user_id + other_id;
+        char[] charArr = chat_name.toCharArray();
+        Arrays.sort(charArr);
+
+        String CHAT_NAME = new String(charArr);
+        System.out.println("결과 : " + CHAT_NAME);
 
         // 채팅 방 입장
         //openChat(CHAT_NAME);
@@ -98,7 +97,11 @@ public class ChatActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         //Firebase DB 관리 객체, chat 노드 참조 객체 얻어오기
-        databaseReference = firebaseDatabase.getReference("Chat").push();
+        databaseReference = firebaseDatabase.getReference("Chat").child(CHAT_NAME).child("comment");
+
+        // Chat\users 노드에 내용 저장
+        MessageItem mi = new MessageItem(user_id, other_id);
+        firebaseDatabase.getReference("Chat").child(CHAT_NAME).child("User").setValue(mi);
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -137,14 +140,13 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
-
         // 전송
         Button chat_send = findViewById(R.id.send);
         chat_send.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
-                //메세지 작성 시간 문자열로
+                //메세지 작성 문자열로
                 String message = chat_edit.getText().toString();
 
                 //현재 시간을 가지고 있는 객체
@@ -153,13 +155,11 @@ public class ChatActivity extends AppCompatActivity {
 
                 // firebase DB에 저장할 값(MessageItem객체) 설정
                 // MessageItem messageItem= new MessageItem(name ,text, time, pofile);
-                MessageItem messageItem = new MessageItem(username, message, time, user_id, other_id);
-                MessageItem mi = new MessageItem();
-                mi.setUsername(username);
-                //ChatCheck chatCheck = new ChatCheck(username);
+                MessageItem messageItem = new MessageItem(username, message, time);
+                MessageItem mi = new MessageItem(user_id, other_id);
                 // 위처럼 해버리면 매번 메시지 보낼때마다 user_id, other_id 다 들어감...
 
-                //'chat'노드에 내용 저장
+                // Chat / comment 노드에 내용 저장
                 databaseReference.push().setValue(messageItem);
 
                 //EditText에 있는 글씨 지우기

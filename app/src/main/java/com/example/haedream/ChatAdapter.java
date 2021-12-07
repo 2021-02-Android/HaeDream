@@ -59,11 +59,10 @@ public class ChatAdapter extends BaseAdapter {
 
         if(item.getName().equals(G.UserName)){
             itemView= layoutInflater.inflate(R.layout.my_msgbox,viewGroup,false);
-            System.out.println("[ChatAdapter username] " + G.UserName);
         }else{
             itemView= layoutInflater.inflate(R.layout.other_msgbox,viewGroup,false);
-            System.out.println("[ChatAdapter username] " + G.UserName);
         }
+        System.out.println("[ChatAdapter username] " + G.UserName);
 
 
         //만들어진 itemView에 값들 설정
