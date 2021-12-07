@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatAdapter extends BaseAdapter {
-
+    String user_name; // 사용자 이름 받아옴
     ArrayList<MessageItem> messageItems;
     LayoutInflater layoutInflater;
 

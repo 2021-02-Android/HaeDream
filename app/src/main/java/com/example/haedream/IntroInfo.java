@@ -35,6 +35,9 @@ public class IntroInfo extends AppCompatActivity {
         String other_id = intent.getStringExtra("other_id");
         Log.d("[IntroInfo other_id 인텐트 받음]", other_id);
 
+        String otheruser_name = intent.getStringExtra("other_user_name");
+        Log.d("[IntroInfo other_user_name 인텐트 받음]", otheruser_name);
+
         String it_userid = intent.getStringExtra("user_id");
         Log.d("[IntroInfo user_id 인텐트 받아옴]", it_userid);
 
@@ -70,6 +73,7 @@ public class IntroInfo extends AppCompatActivity {
                 it.putExtra("name", name.getText().toString());
                 it.putExtra("user_id",it_userid); // 현재 사용자
                 it.putExtra("other_id",other_id); // 상대방 아이디
+                it.putExtra("other_user_name", otheruser_name); // 상대방 이름
                 it.putExtra("user_name",user_name); // 사용자 이름
                 Log.d("[info에서 chat으로 user_id 인텐트 전달]", it_userid);
                 Log.d("[info에서 chat으로 other_id 인텐트 전달]", other_id);

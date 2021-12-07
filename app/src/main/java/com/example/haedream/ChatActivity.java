@@ -33,7 +33,7 @@ import java.util.Calendar;
 public class ChatActivity extends AppCompatActivity {
     String user_id; // 시스템 사용자 id
     String other_id; // 상대방 id
-    String name, user_name;
+    String other_name, user_name;
 
     private String CHAT_NAME;   // 채팅방 이름
 
@@ -66,15 +66,15 @@ public class ChatActivity extends AppCompatActivity {
 
         // 상대 이름 받음
         Intent info = getIntent();
-        name = info.getStringExtra("name");
-        Log.d("[ChatActivity name 인텐트 받아옴]", name);
+        other_name = info.getStringExtra("other_user_name");
+        Log.d("[ChatActivity name 인텐트 받아옴]", other_name);
 
         user_name = info.getStringExtra("user_name");
         Log.d("[ChatActivity user_name 인텐트 받아옴]", user_name);
 
         // 상단바 채팅방 이름 상대이름으로
         textView = (TextView) findViewById(R.id.othername);
-        textView.setText(name);
+        textView.setText(other_name);
 
         // imageView = (ImageView) findViewById(R.id.otherimage); // 이미지
         // imageView.setText(image);
@@ -84,6 +84,8 @@ public class ChatActivity extends AppCompatActivity {
         chat_edit = (EditText) findViewById(R.id.text);
 
         adapter = new ChatAdapter(messageItems, getLayoutInflater());
+        // ChatAdapter로 사용자 이름 넘겨줌
+        adapter.user_name = user_name;
         listView.setAdapter(adapter);
 
         //Firebase DB 관리 객체, chat 노드 참조 객체 얻어오기
@@ -143,7 +145,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 //firebase DB에 저장할 값(MessageItem객체) 설정
                 // MessageItem messageItem= new MessageItem(name ,text, time, pofile);
-                MessageItem messageItem= new MessageItem(name, message, time, user_id, other_id, user_name);
+                MessageItem messageItem= new MessageItem(other_name, message, time, user_id, other_id, user_name);
                 // 위처럼 해버리면 매번 메시지 보낼때마다 user_id, other_id 다 들어감...
 
                 //'chat'노드에 내용 저장
