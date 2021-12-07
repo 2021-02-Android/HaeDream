@@ -14,6 +14,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Setting extends AppCompatActivity {
     String user_id;
     @Override
@@ -110,39 +119,7 @@ public class Setting extends AppCompatActivity {
                         .setPositiveButton("예", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                /*
-                                // "예" 버튼 클릭시 동작부
-                                UserManagement.getInstance().requestUnlink(new UnLinkResponseCallback() {
-                                    @Override
-                                    public void onFailure(ErrorResult errorResult) {
-                                        //회원탈퇴 실패 시 동작
-                                    }
-
-                                    @Override
-                                    public void onSessionClosed(ErrorResult errorResult) {
-                                        //세션이 닫혔을 시 동작.
-                                    }
-
-                                    @Override
-                                    public void onNotSignedUp() {
-                                        //가입되지 않은 계정이 회원탈퇴를 요구할 경우 동작.
-                                    }
-
-                                    @Override
-                                    public void onSuccess(Long result) {
-                                        //회원탈퇴 성공 시 동작.
-                                        dialog.dismiss(); //팝업창 종료
-
-                                        ActivityCompat.finishAffinity(Setting.this); // 모든 액티비티 종료
-
-                                        Intent intent = new Intent(getApplicationContext(), Login.class);
-                                        startActivity(intent); // 로그인 창 실행
-
-                                        Toast.makeText(getApplicationContext(), "정상적으로 로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-
-                                 */
+                                delete_user(user_id);
                             }
                         })
                         .setNegativeButton("아니요", new DialogInterface.OnClickListener() {
@@ -154,6 +131,42 @@ public class Setting extends AppCompatActivity {
                         }).show();
             }
         });
+    }
 
+    public void delete_user(String id) {
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "탈퇴가 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                Log.d("[TAG] 탈퇴", "탈퇴 완료");
+
+                ActivityCompat.finishAffinity(Setting.this); // 모든 액티비티 종료
+
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent); // 로그인 창 실행
+            }
+        };
+        Setting.DeleteRequest deleteRequest = new Setting.DeleteRequest(id, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(Setting.this);
+        queue.add(deleteRequest);
+    }
+
+    public class DeleteRequest extends StringRequest {
+        // 서버 URL 설정 ( PHP 파일 연동 - Database 바로 접근 불가, php 중간 매체로 파싱하여 사용 )
+        final static private String URL = "http://idox23.cafe24.com/user_delete.php";
+        private Map<String, String> map;
+
+        public DeleteRequest(String userID, Response.Listener<String> listener) {
+            super(Method.POST, URL, listener, null);
+
+            map = new HashMap<>();
+            map.put("userID", userID);
+            // map.put("userPW", userPW); // 추후 비밀번호 확인하여 탈퇴하도록 추가 예정
+        }
+
+        @Override
+        protected Map<String, String> getParams() throws AuthFailureError {
+            return map;
+        }
     }
 }

@@ -5,9 +5,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
@@ -20,6 +22,9 @@ public class Login extends AppCompatActivity {
     EditText user_id;
     private final static String TAG = "kakao debug";
     private Button kakaoAuth;
+
+    private long backKeyPressedTime = 0;  // 뒤로가기 버튼을 누른 시간 저장
+    private Toast toast;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,5 +115,23 @@ public class Login extends AppCompatActivity {
                 return null;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {  // 메인 화면에서 뒤로가기 버튼 2회 누르면 앱 종료
+        // 2000 milliseconds = 2 seconds
+        // 가장 최근에 뒤로가기 버튼을 누른 시간에 2초를 더해 현재시간과 비교 후, 2초가 지났으면 메시지 출력
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            toast = Toast.makeText(this, "뒤로가기 버튼을 다시 누르면 종료됩니다.", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
+        // 2초가 지나지 않은 시점에서 뒤로가기 다시 클릭시 앱 종료
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            toast.cancel();  // 알림 팝업(Toast) 표시 해제
+            ActivityCompat.finishAffinity(this);
+            System.exit(0);  // 시스템 종료
+        }
     }
 }
