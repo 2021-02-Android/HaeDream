@@ -26,8 +26,7 @@ public class Intro_List extends AppCompatActivity {
     ListView listView;
     ArrayList<IntroListItem> arrayList;
     String user_id;
-    String username;
-
+    String username, otherusername;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,7 +51,8 @@ public class Intro_List extends AppCompatActivity {
                 it.putExtra("depart", arrayList.get(a_position).getDepart());
                 it.putExtra("intro", arrayList.get(a_position).getIntro());
                 it.putExtra("other_id", arrayList.get(a_position).getOther_id());
-                it.putExtra("user_name", username);
+                it.putExtra("otherusername", otherusername);
+                it.putExtra("username", username);
                 Log.d("[user_name 인텐트 전달]", username);
                 it.putExtra("user_id", user_id);
                 Log.d("[user_id 인텐트 전달]", user_id);
@@ -130,6 +130,8 @@ public class Intro_List extends AppCompatActivity {
 
                     // 로그인한 사용자말고 다른 사람들만 리스트에 추가
                     if (!userid.equals(user_id)){
+                        otherusername = name;
+
                         item.setOther_id(other_id);
                         item.setName(name);
                         item.setDepart(depart);

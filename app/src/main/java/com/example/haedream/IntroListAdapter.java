@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class IntroListAdapter extends BaseAdapter {
     Context context;
     ArrayList<IntroListItem> arrayList;
+    String username;
 
     public IntroListAdapter(Context context, ArrayList<IntroListItem> arrayList) {
         this.context = context;
