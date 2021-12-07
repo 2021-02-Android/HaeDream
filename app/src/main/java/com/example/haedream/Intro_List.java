@@ -59,14 +59,12 @@ public class Intro_List extends AppCompatActivity {
             }
         });
 
-
-
         // 말풍선 버튼 누를 시 이동
         ImageButton list = (ImageButton) findViewById(R.id.list_btn);
         list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ConvertList.class);
+                Intent intent = new Intent(getApplicationContext(), Convert_List.class);
                 intent.putExtra("user_id", user_id);
                 startActivity(intent);
                 finish();

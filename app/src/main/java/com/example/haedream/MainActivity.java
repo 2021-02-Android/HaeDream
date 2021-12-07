@@ -37,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
+    카카오 로그인 구현하기 위해서는 키 해실를 카카오 개발자 홈페이지에 등록해야 된다.
+    키 해시 얻는 방법은 CMD에서 하거나 Android에서 직접 출력하는 방법 두 가지가 있는데
+    개발자들이 cmd를 추천하긴 하지만 우린 상용화 단계 아니고 프로젝트여서 안드로이드 방법 사용했음.
+    아래 주석처리된 부분 풀고, 위 getHashKey() 함수 호출하는 부분 실행하면
+    디버깅 툴 Logcat에 자기 키해시값 얻을 수 있음. 그거 나한테 보내줘야 등록하고 실행까지 가능
+    키해시 등록 안하면 프로그램 실행 안된다!
+     */
+
+    /*
     private void getHashKey(){ // 해시 얻는 함수. 보안성 문제로 주석처리
         PackageInfo packageInfo = null;
         try {
