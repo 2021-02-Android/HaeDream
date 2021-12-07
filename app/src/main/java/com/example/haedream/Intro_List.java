@@ -26,6 +26,8 @@ public class Intro_List extends AppCompatActivity {
     ListView listView;
     ArrayList<IntroListItem> arrayList;
     String user_id;
+    String username;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,8 +52,8 @@ public class Intro_List extends AppCompatActivity {
                 it.putExtra("depart", arrayList.get(a_position).getDepart());
                 it.putExtra("intro", arrayList.get(a_position).getIntro());
                 it.putExtra("other_id", arrayList.get(a_position).getOther_id());
-                it.putExtra("user_name", arrayList.get(a_position).getUser_name());
-                Log.d("[user_name 인텐트 전달]", arrayList.get(a_position).getUser_name());
+                it.putExtra("user_name", username);
+                Log.d("[user_name 인텐트 전달]", username);
                 it.putExtra("user_id", user_id);
                 Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(it);
@@ -118,7 +120,7 @@ public class Intro_List extends AppCompatActivity {
 
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
-                    //String user_name = Content.getString("user_name");
+                    String userid = Content.getString("userid");
                     String name = Content.getString("name");
                     String depart = Content.getString("dept");
                     String intro = Content.getString("intro");
@@ -126,15 +128,19 @@ public class Intro_List extends AppCompatActivity {
 
                     IntroListItem item = new IntroListItem();
 
-                    //if (user_name.equals(user_id)){
-                    //    item.setUser_name(user_name);
-                    //}
+                    // 로그인한 사용자말고 다른 사람들만 리스트에 추가
+                    if (!userid.equals(user_id)){
+                        item.setOther_id(other_id);
+                        item.setName(name);
+                        item.setDepart(depart);
+                        item.setIntro(intro);
+                        arrayList.add(item);
+                    }
 
-                    item.setOther_id(other_id);
-                    item.setName(name);
-                    item.setDepart(depart);
-                    item.setIntro(intro);
-                    arrayList.add(item);
+                    // 로그인한 사용자 이름 username 변수에 넣음
+                    else if (userid.equals(user_id)){
+                        username = name;
+                    }
 
                 }
             } catch (JSONException e) {
