@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -73,6 +74,30 @@ public class MySimList extends AppCompatActivity {
                 it.putExtra("user_id", user_id);
                 Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(it);
+                finish();
+            }
+        });
+
+        // 설정 버튼
+        ImageButton setButton = (ImageButton) findViewById(R.id.setting);
+        setButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // 마이페이지 버튼 누를 시 마이페이지 화면 이동
+        ImageButton myButton = (ImageButton) findViewById(R.id.mypage);
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
                 finish();
             }
         });
