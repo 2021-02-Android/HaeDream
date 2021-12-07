@@ -22,68 +22,86 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Intro_List extends AppCompatActivity {
+public class ConvertList extends AppCompatActivity {
     ListView listView;
-    ArrayList<IntroListItem> arrayList;
+    ArrayList<ConvertListItem> arrayList;
     String user_id;
-    String username;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.introduce_list);
+        setContentView(R.layout.convert_list);
 
         Intent userintent = getIntent();
         user_id = userintent.getStringExtra("user_id");
         Log.d("[user_id 인텐트 받아옴]", user_id);
 
-        listView = findViewById(R.id.intro_listview);
+        listView = findViewById(R.id.chat_view);
         arrayList = new ArrayList<>();
 
-        new Select_HelpList_Request().execute();
+        new ConvertList.Select_HelpList_Request().execute();
+
+        // 심부름 요청 버튼 클릭 시
+        ImageButton simButton = (ImageButton) findViewById(R.id.callbutton);
+        simButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HelpCall.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // 소개 버튼 클릭 시
+        ImageButton go_intro = findViewById(R.id.go_intro);
+        go_intro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Intro_List.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // 설정 버튼
+        ImageButton set = (ImageButton) findViewById(R.id.setting);
+        set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // 마이페이지 버튼
+        ImageButton my = (ImageButton) findViewById(R.id.mypage);
+        my.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // 리스트뷰에서 아이템 클릭 시
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
-                Intent it = new Intent(getApplicationContext(), IntroInfo.class);
-                it.putExtra("name", arrayList.get(a_position).getName());
-                it.putExtra("depart", arrayList.get(a_position).getDepart());
-                it.putExtra("intro", arrayList.get(a_position).getIntro());
-                it.putExtra("other_id", arrayList.get(a_position).getOther_id());
-                it.putExtra("user_name", username);
-                Log.d("[user_name 인텐트 전달]", username);
-                it.putExtra("user_id", user_id);
+                Intent it = new Intent(getApplicationContext(), SimAccept.class);
+                it.putExtra("name", arrayList.get(a_position).getName());   // 상대 이름
+                it.putExtra("id", arrayList.get(a_position).getId());   // 상대 아이디
+                it.putExtra("user_id", user_id);        // 시스템 사용자 아이디
                 Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(it);
                 finish();
             }
         });
 
-        // 말풍선 버튼 누를 시 이동
-        ImageButton list = (ImageButton) findViewById(R.id.list_btn);
-        list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ConvertList.class);
-                intent.putExtra("user_id", user_id);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        // 심부름 버튼 누를 시 이동
-        ImageButton simbu = (ImageButton) findViewById(R.id.go_sim);
-        simbu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SimhelpList.class);
-                intent.putExtra("user_id", user_id);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
     class Select_HelpList_Request extends AsyncTask<String, Integer, String> {
@@ -91,7 +109,7 @@ public class Intro_List extends AppCompatActivity {
         @Override
         protected String doInBackground(String... rurls) {
             try {
-                URL url = new URL("https://idox23.cafe24.com/user_result.php");
+                URL url = new URL("https://idox23.cafe24.com/task_result.php");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.connect();
 
@@ -120,34 +138,44 @@ public class Intro_List extends AppCompatActivity {
 
                 for (int index = 0; index < results.length(); index++) {
                     JSONObject Content = results.getJSONObject(index);
-                    String userid = Content.getString("userid");
                     String name = Content.getString("name");
-                    String depart = Content.getString("dept");
-                    String intro = Content.getString("intro");
-                    String other_id = Content.getString("userid");
 
-                    IntroListItem item = new IntroListItem();
-
-                    // 로그인한 사용자말고 다른 사람들만 리스트에 추가
-                    if (!userid.equals(user_id)){
-                        item.setOther_id(other_id);
-                        item.setName(name);
-                        item.setDepart(depart);
-                        item.setIntro(intro);
-                        arrayList.add(item);
-                    }
-
-                    // 로그인한 사용자 이름 username 변수에 넣음
-                    else if (userid.equals(user_id)){
-                        username = name;
-                    }
+                    ConvertListItem item = new ConvertListItem();
+                    item.setName(name);
+                    arrayList.add(item);
 
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            IntroListAdapter introListAdapter = new IntroListAdapter(Intro_List.this, arrayList);
-            listView.setAdapter(introListAdapter);
+            ConvertAdapter convertAdapter = new ConvertAdapter(ConvertList.this, arrayList);
+            listView.setAdapter(convertAdapter);
         }
     }
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
