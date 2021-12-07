@@ -42,6 +42,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ProfileChange extends AppCompatActivity {
     String user_id;
     ImageView imgview;
@@ -344,6 +346,9 @@ public class ProfileChange extends AppCompatActivity {
                     String imgPath = Content.getString("profile");
 
                     if(userid.equals(user_id)){
+                        if (imgPath.equals(null)){
+                            imgview.setImageResource(R.drawable.my);
+                        }
                         // 이미지뷰에 서버에서 불러온 이미지 띄움
                         Glide.with(imgview).load("https://idox23.cafe24.com/"+imgPath).into(imgview);
                         Log.d("이미지 경로 : ", imgPath);

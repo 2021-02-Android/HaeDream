@@ -41,10 +41,13 @@
 
     </LinearLayout>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="120dp"
+        android:src="@mipmap/ic_launcher" />
 
     <Button
         android:layout_width="match_parent"
