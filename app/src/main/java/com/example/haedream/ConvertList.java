@@ -130,7 +130,7 @@ public class ConvertList extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
-                Intent it = new Intent(getApplicationContext(), SimAccept.class);
+                Intent it = new Intent(getApplicationContext(), ChatActivity.class);
                 it.putExtra("name", arrayList.get(a_position).getName());   // 상대 이름
                 it.putExtra("id", arrayList.get(a_position).getId());   // 상대 아이디
                 it.putExtra("user_id", user_id);        // 시스템 사용자 아이디
