@@ -20,39 +20,8 @@ public class HelpCall extends AppCompatActivity {
     Spinner spinner2;
     Spinner spinner3;
     int count_bae = 0, count_clean = 0, count_ins = 0, count_move = 0, count_home = 0, count_any = 0;
-    int[] count_arr = {0, 0, 0, 0, 0, 0};
     boolean checked = false;
     String str;
-
-
-    /*void func(int count, int[] count_arr, ImageButton btn, ImageButton[] arr) {
-        for(int i=0; i<6; i++) {
-            if(count_arr[i]%2 == 1) {
-                if(count%2==1) {
-                    if(btn.equals(arr[i]) || count==count_arr[i]){
-                        btn.setImageResource(Integer.parseInt("R.drawable."+btn+"2"));
-                        Log.d("[TAG]", String.valueOf(btn));
-                        // str = btn;
-                    } else {
-                        arr[i].setImageResource(Integer.parseInt("R.drawable."+btn+"1"));
-                        count_arr[i] = 0;
-                        Log.d("[TAG]", String.valueOf(count_arr[i]));
-                    }
-                }
-            }
-            else {
-                if(count%2==1){
-                    btn.setImageResource(Integer.parseInt("R.drawable."+btn+"2"));
-                    // str = btn;
-                }
-                else {
-                    btn.setImageResource(Integer.parseInt("R.drawable."+btn+"1"));
-                    // str = null;
-                }
-               // Log.d("[TAG]", String.valueOf(btn));
-            }
-        }
-    }*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -366,6 +335,28 @@ public class HelpCall extends AppCompatActivity {
                         Log.d("[TAG] str 디버깅 ",str);
                     }
                 }
+            }
+        });
+
+        // 설정 버튼
+        ImageButton setButton = (ImageButton) findViewById(R.id.setting);
+        setButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+            }
+        });
+
+        // 마이페이지 버튼 누를 시 마이페이지 화면 이동
+        ImageButton myButton = (ImageButton) findViewById(R.id.mypage);
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
             }
         });
 

@@ -64,6 +64,7 @@ public class ChatActivity extends AppCompatActivity {
         other_id = user_intent.getStringExtra("other_id");
         Log.d("[ChatActivity other_id 인텐트 받아옴]", other_id);
 
+
         // 상대 이름 받음
         Intent info = getIntent();
         otherusername = info.getStringExtra("name");
@@ -96,12 +97,11 @@ public class ChatActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         //Firebase DB 관리 객체, chat 노드 참조 객체 얻어오기
-        databaseReference = firebaseDatabase.getReference("Chat").child(CHAT_NAME);
+        databaseReference = firebaseDatabase.getReference("Chat").child(CHAT_NAME).child("comment");
 
-        // Users 노드에 사용자 아이디와, 채팅방 이름 저장
-        //MessageItem mi = new MessageItem(user_id, other_id);
-        firebaseDatabase.getReference("Users").child(user_id).child("Room").push().setValue(CHAT_NAME);
-        firebaseDatabase.getReference("Users").child(other_id).child("Room").push().setValue(CHAT_NAME);
+        // Chat users 노드에 내용 저장
+        MessageItem mi = new MessageItem(user_id, other_id);
+        firebaseDatabase.getReference("Chat").child(CHAT_NAME).child("User").setValue(mi);
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -157,8 +157,9 @@ public class ChatActivity extends AppCompatActivity {
                 // MessageItem messageItem= new MessageItem(name ,text, time, pofile);
                 MessageItem messageItem = new MessageItem(username, message, time);
                 MessageItem mi = new MessageItem(user_id, other_id);
+                // 위처럼 해버리면 매번 메시지 보낼때마다 user_id, other_id 다 들어감...
 
-                // Chat < comment 노드에 내용 저장
+                // Chat / comment 노드에 내용 저장
                 databaseReference.push().setValue(messageItem);
 
                 //EditText에 있는 글씨 지우기
@@ -185,5 +186,6 @@ public class ChatActivity extends AppCompatActivity {
         });
 
     }
+
 
 }
