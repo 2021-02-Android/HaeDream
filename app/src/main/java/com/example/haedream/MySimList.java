@@ -103,6 +103,15 @@ public class MySimList extends AppCompatActivity {
             }
         });
 
+        // 뒤로가기
+        ImageButton back = (ImageButton) findViewById(R.id.list_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
     }
 
     class Select_MySimList_Request extends AsyncTask<String, Integer, String> {
