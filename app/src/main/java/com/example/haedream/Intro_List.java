@@ -67,6 +67,28 @@ public class Intro_List extends AppCompatActivity {
             }
         });
 
+        // 설정 버튼
+        ImageButton setButton = (ImageButton) findViewById(R.id.setting);
+        setButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+            }
+        });
+
+        // 마이페이지 버튼 누를 시 마이페이지 화면 이동
+        ImageButton myButton = (ImageButton) findViewById(R.id.mypage);
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyPage.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+            }
+        });
+
         // 말풍선 버튼 누를 시 이동
         ImageButton list = (ImageButton) findViewById(R.id.list_btn);
         list.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +165,9 @@ public class Intro_List extends AppCompatActivity {
                         item.setOther_id(other_id);
                         item.setName(name);
                         item.setDepart(depart);
-                        item.setIntro(intro);
+                        if(!intro.equals("null"))  // 소개가 null이 아닌 경우
+                            item.setIntro(intro);
+                        else item.setIntro("등록된 소개 글이 없습니다.");
                         item.setProfile(profile);
                         arrayList.add(item);
                     }
