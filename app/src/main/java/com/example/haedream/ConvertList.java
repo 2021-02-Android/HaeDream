@@ -9,8 +9,15 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,22 +32,52 @@ import java.util.ArrayList;
 public class ConvertList extends AppCompatActivity {
     ListView listView;
     ArrayList<ConvertListItem> arrayList;
-    String user_id;
+    String user_id, username;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.convert_list);
 
-        Intent userintent = getIntent();
-        user_id = userintent.getStringExtra("user_id");
-        Log.d("[user_id 인텐트 받아옴]", user_id);
-
         listView = findViewById(R.id.chat_view);
         arrayList = new ArrayList<>();
+        /* 원리
+         *  - firebase에서 Users에서 id에 해당되는 그아래 값 출력
+         *  - 출력된 값은 채팅방 아이디임. 채팅방을 불러와서 정보 출력하기. 챗뷰 chat_view
+         *       - 상대 이름 (name), 마지막 내용 (msg_content),이미지 image, 상태 (msg_state)
+         *           상태는 '받음 : ' or '보냄 : ' 형식
+         *
+         * */
 
-        new ConvertList.Select_HelpList_Request().execute();
+        Intent userintent = getIntent();
+        user_id = userintent.getStringExtra("user_id");
+        Log.d("[Convert user_id 인텐트 받아옴]", user_id);
 
+        username = userintent.getStringExtra("username");
+        Log.d("[Convert username 인텐트 받아옴]", username);
+
+        //new ConvertList.Select_HelpList_Request().execute();
+/*
+        // 현재 사용자 ID에 해당하는 채팅방 이름 출력하기.
+        databaseReference.child("Users").child(user_id).child("Room")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String value = dataSnapshot.getValue(String.class);
+                        // = value;
+                        System.out.println("결과 : " + value);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+*/
         // 심부름 요청 버튼 클릭 시
         ImageButton simButton = (ImageButton) findViewById(R.id.callbutton);
         simButton.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +108,7 @@ public class ConvertList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Setting.class);
+                intent.putExtra("user_id", user_id);
                 startActivity(intent);
                 finish();
             }
@@ -103,57 +141,6 @@ public class ConvertList extends AppCompatActivity {
         });
 
     }
-
-    class Select_HelpList_Request extends AsyncTask<String, Integer, String> {
-        String result = null;
-        @Override
-        protected String doInBackground(String... rurls) {
-            try {
-                URL url = new URL("https://idox23.cafe24.com/task_result.php");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.connect();
-
-                if(conn.getResponseCode()==HttpURLConnection.HTTP_OK) {
-                    InputStreamReader inputStreamReader = new InputStreamReader(conn.getInputStream());
-                    BufferedReader reader = new BufferedReader(inputStreamReader);
-                    StringBuilder stringBuilder = new StringBuilder();
-                    String line = "";
-                    while ((line = reader.readLine()) != null) {
-                        stringBuilder.append(line);
-                    }
-                    result = stringBuilder.toString();
-                } else {
-                    result = "error";
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return result;
-        }
-
-        protected void onPostExecute(String _result) {
-            try {
-                JSONObject root = new JSONObject(_result);
-                JSONArray results = new JSONArray(root.getString("results"));
-
-                for (int index = 0; index < results.length(); index++) {
-                    JSONObject Content = results.getJSONObject(index);
-                    String name = Content.getString("name");
-
-                    ConvertListItem item = new ConvertListItem();
-                    item.setName(name);
-                    arrayList.add(item);
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            ConvertAdapter convertAdapter = new ConvertAdapter(ConvertList.this, arrayList);
-            listView.setAdapter(convertAdapter);
-        }
-    }
-
-
 
 }
 
