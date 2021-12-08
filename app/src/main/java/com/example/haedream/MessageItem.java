@@ -12,7 +12,6 @@ public class MessageItem {
     private String user_id;
     private String other_id;
     private String username;
-    private String chat_name;
 
     public MessageItem(String name, String text, String time){
         this.name = name;
@@ -50,16 +49,9 @@ public class MessageItem {
 */
 
 
+    public MessageItem(){}
+
     // getter setter
-
-
-    public void setChat_name(String chat_name) {
-        this.chat_name = chat_name;
-    }
-
-    public String getChat_name() {
-        return chat_name;
-    }
 
     public void setUsername(String username) { this.username = username;    }
 

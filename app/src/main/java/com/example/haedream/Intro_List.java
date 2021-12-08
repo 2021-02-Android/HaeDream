@@ -33,6 +33,7 @@ public class Intro_List extends AppCompatActivity {
     String username, otherusername;
     CircleImageView iv_profile;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,28 +65,6 @@ public class Intro_List extends AppCompatActivity {
                 Log.d("[user_id 인텐트 전달]", user_id);
                 startActivity(it);
                 finish();
-            }
-        });
-
-        // 마이페이지 버튼
-        ImageButton my = (ImageButton) findViewById(R.id.mypage);
-        my.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyPage.class);
-                intent.putExtra("user_id", user_id);
-                startActivity(intent);
-            }
-        });
-
-        // 설정 버튼
-        ImageButton setButton = (ImageButton) findViewById(R.id.setting);
-        setButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Setting.class);
-                intent.putExtra("user_id", user_id);
-                startActivity(intent);
             }
         });
 
