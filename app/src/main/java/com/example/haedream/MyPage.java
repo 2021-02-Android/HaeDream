@@ -67,9 +67,6 @@ public class MyPage extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainSCR.class);
-                intent.putExtra("user_id", user_id);
-                startActivity(intent);
                 finish();
             }
         });
@@ -134,7 +131,9 @@ public class MyPage extends AppCompatActivity {
                         tvdept.setText(dept);
                         tvuserid.setText(userid);
                         tvbirth.setText(birth);
-                        tvinfo.setText(intro);
+                        if(!intro.equals("null"))
+                            tvinfo.setText(intro);
+                        else tvinfo.setText("등록된 소개 글이 없습니다.");
                     }
                 }
             } catch (JSONException e) {

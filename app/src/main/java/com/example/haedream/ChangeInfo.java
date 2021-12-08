@@ -131,7 +131,9 @@ public class ChangeInfo extends AppCompatActivity {
                     String intro = Content.getString("intro");
 
                     if (userid.equals(user_id)){
-                        tvNow.setText(intro);
+                        if(!intro.equals("null"))
+                            tvNow.setText(intro);
+                        else tvNow.setText(" 등록된 소개 글이 없습니다.");
                     }
                 }
             } catch (JSONException e) {
