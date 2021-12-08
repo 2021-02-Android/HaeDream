@@ -179,8 +179,8 @@
 
     <ImageButton
         android:id="@+id/backhome"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:backgroundTint="#00FFFFFF"
         android:padding="0sp"
         android:scaleType="centerCrop"
