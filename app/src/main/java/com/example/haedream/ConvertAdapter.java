@@ -8,11 +8,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /*
      대화 리스트 아이템 _ 아이디
@@ -25,7 +29,6 @@ import java.util.Calendar;
 public class ConvertAdapter extends BaseAdapter {
     Context context;
     ArrayList<ConvertListItem> arrayList;
-
 
     public ConvertAdapter(Context context, ArrayList<ConvertListItem> arrayList){
         this.context = context;
@@ -49,22 +52,22 @@ public class ConvertAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.convert_item_list, parent, false);
         }
 
-        TextView state, content;
-
-        /*메세지 작성 시간 문자열로..
-        Calendar calendar = Calendar.getInstance(); //현재 시간을 가지고 있는 객체
-        String time = calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE); //14:16
-         */
-
-        TextView name;
-        ImageView image;
+        TextView state, content, name;
+        CircleImageView image;
 
         image = convertView.findViewById(R.id.image);    // 상대 이미지
-        name = convertView.findViewById(R.id.otherUS_name); // 상대이름
+        name = convertView.findViewById(R.id.name); // 상대이름
         state = convertView.findViewById(R.id.msg_state);   // 받음 or 보냄
         content = convertView.findViewById(R.id.msg_content); // 소개
 
-        return null;
+        name.setText("" + arrayList.get(position).getName());
+        state.setText("" + arrayList.get(position).getState());
+        content.setText("" + arrayList.get(position).getContent());
+        // Glide.with(image).load("https://idox23.cafe24.com/"+arrayList.get(position).getImage()).into(image);
+
+
+
+        return convertView;
 
 
 

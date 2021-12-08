@@ -67,18 +67,28 @@ public class Intro_List extends AppCompatActivity {
             }
         });
 
-        // 말풍선 버튼 누를 시 이동
-        ImageButton list = (ImageButton) findViewById(R.id.list_btn);
-        list.setOnClickListener(new View.OnClickListener() {
+        // 마이페이지 버튼
+        ImageButton my = (ImageButton) findViewById(R.id.mypage);
+        my.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ConvertList.class);
+                Intent intent = new Intent(getApplicationContext(), MyPage.class);
                 intent.putExtra("user_id", user_id);
-                intent.putExtra("username", username);
                 startActivity(intent);
-                finish();
             }
         });
+
+        // 설정 버튼
+        ImageButton setButton = (ImageButton) findViewById(R.id.setting);
+        setButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Setting.class);
+                intent.putExtra("user_id", user_id);
+                startActivity(intent);
+            }
+        });
+
 
         // 심부름 버튼 누를 시 이동
         ImageButton simbu = (ImageButton) findViewById(R.id.go_sim);

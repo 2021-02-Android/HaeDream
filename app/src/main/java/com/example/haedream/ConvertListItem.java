@@ -18,6 +18,14 @@ public class ConvertListItem {
 
     public ConvertListItem(){}
 
+    public ConvertListItem (String name, String state, String content, String time) {
+        this.name = name;
+        this.state = state;
+        this.content = content;
+        this.time = time;
+    }
+
+
     public ConvertListItem (String name, String state, String content, String time,String image) {
         this.name = name;
         this.state = state;
