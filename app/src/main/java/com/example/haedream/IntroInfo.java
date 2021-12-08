@@ -20,7 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 *  뒤로가기 버튼 back, 대화하기 버튼 startChat
 */
 
-// 소개해드림에서 사용 자아이템 클릭시 사용자 정보 화면 나타내줌
+// 소개해드림에서 사용자 아이템 클릭시 사용자 정보 화면 나타내줌
 public class IntroInfo extends AppCompatActivity {
     TextView name, depart, intro;
     CircleImageView iv_profile;
@@ -54,29 +54,13 @@ public class IntroInfo extends AppCompatActivity {
         String user_id = intent.getStringExtra("user_id");
         Log.d("[IntroInfo user_id 인텐트 받아옴]", user_id); // 시스템 아이디
 
-
         name = findViewById(R.id.name);
         depart = findViewById(R.id.depart);
         intro = findViewById(R.id.intro);
 
-
         name.setText(it_name);
         depart.setText(it_depart);
         intro.setText(it_intro);
-
-        // 뒤로가기
-        Button back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Intro_List.class);
-                intent.putExtra("user_id", user_id);
-                Log.d("[user_id 인텐트 전달]", user_id);
-                startActivity(intent);
-                finish();
-            }
-        });
 
         // 대화하기
         Button chat = findViewById(R.id.startChat);
@@ -91,6 +75,20 @@ public class IntroInfo extends AppCompatActivity {
                 Log.d("[info에서 chat으로 user_id 인텐트 전달]", user_id);
                 Log.d("[info에서 chat으로 other_id 인텐트 전달]", other_id);
                 startActivity(it);
+                finish();
+            }
+        });
+
+        // 뒤로가기
+        Button back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Intro_List.class);
+                intent.putExtra("user_id", user_id);
+                Log.d("[user_id 인텐트 전달]", user_id);
+                startActivity(intent);
                 finish();
             }
         });

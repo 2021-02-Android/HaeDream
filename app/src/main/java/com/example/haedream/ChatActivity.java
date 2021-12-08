@@ -96,10 +96,12 @@ public class ChatActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         //Firebase DB 관리 객체, chat 노드 참조 객체 얻어오기
-        databaseReference = firebaseDatabase.getReference("Chat").child(CHAT_NAME).child("comment");
-        // Chat < User 노드에 내용 저장
-        MessageItem mi = new MessageItem(user_id, other_id);
-        firebaseDatabase.getReference("Chat").child(CHAT_NAME).child("User").setValue(mi);
+        databaseReference = firebaseDatabase.getReference("Chat").child(CHAT_NAME);
+
+        // Users 노드에 사용자 아이디와, 채팅방 이름 저장
+        //MessageItem mi = new MessageItem(user_id, other_id);
+        firebaseDatabase.getReference("Users").child(user_id).child("Room").push().setValue(CHAT_NAME);
+        firebaseDatabase.getReference("Users").child(other_id).child("Room").push().setValue(CHAT_NAME);
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
