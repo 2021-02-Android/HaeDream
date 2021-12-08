@@ -89,19 +89,6 @@ public class Intro_List extends AppCompatActivity {
             }
         });
 
-        // 말풍선 버튼 누를 시 이동
-        ImageButton list = (ImageButton) findViewById(R.id.list_btn);
-        list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ConvertList.class);
-                intent.putExtra("user_id", user_id);
-                intent.putExtra("username", username);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         // 심부름 버튼 누를 시 이동
         ImageButton simbu = (ImageButton) findViewById(R.id.go_sim);
         simbu.setOnClickListener(new View.OnClickListener() {
