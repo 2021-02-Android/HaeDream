@@ -47,7 +47,7 @@ public class MySimList extends AppCompatActivity {
 
         new MySimList.Select_MySimList_Request().execute();
 
-        // 리스트뷰에서 아이템 클릭 시
+        // 내가 요청한 심부름 리스트에서 아이템 클릭 시
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {
@@ -63,6 +63,7 @@ public class MySimList extends AppCompatActivity {
             }
         });
 
+        // 내가 수락한 심부름 리스트 아이템 클릭 시
         acceptsimList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a_parent, View a_view, int a_position, long a_id) {

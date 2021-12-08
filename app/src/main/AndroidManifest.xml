@@ -97,6 +97,7 @@
         <activity android:name=".SimCheck" />
         <activity android:name=".CheckPWChange" />
         <activity android:name=".ChangePW" />
+        <activity android:name=".ConvertList" />
 
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>

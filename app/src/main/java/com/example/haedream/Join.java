@@ -60,7 +60,7 @@ public class Join extends AppCompatActivity {
                 String snum = regi_second_num.getText().toString();
                 String depart = spinner.getSelectedItem().toString();
                 String birth = regi_birth.getText().toString();
-                String profile = "uploads/my.png";
+                String profile = "uploads/defaultimage.png";
 
                 boolean fnumIsNum =  fnum.matches("-?\\d*(\\.\\d+)?");
                 boolean snumIsNum =  snum.matches("-?\\d+(\\.\\d+)?");
