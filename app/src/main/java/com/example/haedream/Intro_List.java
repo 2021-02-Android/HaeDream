@@ -33,7 +33,6 @@ public class Intro_List extends AppCompatActivity {
     String username, otherusername;
     CircleImageView iv_profile;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +74,7 @@ public class Intro_List extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ConvertList.class);
                 intent.putExtra("user_id", user_id);
+                intent.putExtra("username", username);
                 startActivity(intent);
                 finish();
             }

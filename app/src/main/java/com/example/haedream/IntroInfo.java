@@ -54,6 +54,7 @@ public class IntroInfo extends AppCompatActivity {
         String user_id = intent.getStringExtra("user_id");
         Log.d("[IntroInfo user_id 인텐트 받아옴]", user_id); // 시스템 아이디
 
+
         name = findViewById(R.id.name);
         depart = findViewById(R.id.depart);
         intro = findViewById(R.id.intro);
