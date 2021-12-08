@@ -92,7 +92,7 @@
                 android:id="@+id/substring"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/font_medium"
                 android:text=" 교내 서점에서 모바일컴퓨팅 책 한권만 사다주세요."
                 android:textColor="@color/black"
@@ -101,7 +101,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="5dp"
                 android:backgroundTint="#D0FFFFFF"
                 android:fontFamily="@font/font_medium"
                 android:text=" 클릭시 정보를 확인하거나 심부름을 취소,완료합니다."
